@@ -4,7 +4,6 @@ import PropTypes from "prop-types"
 
 export default function OrchidModal({ show, onHide, detail }) {
     if (!detail) return null
-
     const {
         orchidName,
         image,
@@ -16,7 +15,6 @@ export default function OrchidModal({ show, onHide, detail }) {
             <Modal.Header closeButton>
                 <Modal.Title>{orchidName}</Modal.Title>
             </Modal.Header>
-
             <Modal.Body>
                 <img
                     src={image}

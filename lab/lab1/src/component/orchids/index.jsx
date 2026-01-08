@@ -1,5 +1,5 @@
 import { Container, Row, Col } from "react-bootstrap"
-import { orchids } from "../../interface/orchids"
+import { orchids } from "../../data/orchids"
 import OrchidCard from "../ui/OrchidCard.jsx"
 
 export default function Orchid() {

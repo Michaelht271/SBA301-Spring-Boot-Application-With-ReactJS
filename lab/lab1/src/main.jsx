@@ -6,7 +6,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import {BrowserRouter} from 'react-router-dom'
 import Router from './Router.jsx'
 
-import author from './interface/author'
+import author from './data/author'
 
 createRoot(document.getElementById('root')).render(
     <BrowserRouter>

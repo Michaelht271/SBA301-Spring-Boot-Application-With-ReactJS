@@ -4,16 +4,13 @@ import Badge from "react-bootstrap/Badge"
 import Button from "react-bootstrap/Button"
 import OrchidModal from "../modal/OrchidModal.jsx"
 
-
 export default function OrchidCard({ orchid }) {
     const {
         orchidName: name,
         category,
         image,
-        isSpecial,
-        description
+        isSpecial
     } = orchid
-
     const [show, setShowModal] = useState(false)
     return (
         <>
@@ -24,14 +21,12 @@ export default function OrchidCard({ orchid }) {
                         Special Offer
                     </Badge>
                 )}
-
                 <Card.Img
                     variant="top"
                     src={image}
                     alt={name}
                     style={{height: '200px', objectFit: 'cover'}}
                 />
-
                 <Card.Body>
                     <Card.Title>{name}</Card.Title>
                     <Card.Text><strong>{category}</strong></Card.Text>
@@ -47,8 +42,7 @@ export default function OrchidCard({ orchid }) {
             <OrchidModal show={show}
                          onHide={() => setShowModal(false)}
                          detail={orchid}
-
-                        />
+            />
         </>
     )
 }
