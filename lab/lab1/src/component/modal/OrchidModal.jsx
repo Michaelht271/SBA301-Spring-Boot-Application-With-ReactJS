@@ -11,7 +11,6 @@ export default function OrchidModal({ show, onHide, detail }) {
         description,
         category
     } = detail
-
     return (
         <Modal show={show} onHide={onHide} centered>
             <Modal.Header closeButton>

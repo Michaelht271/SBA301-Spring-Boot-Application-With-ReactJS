@@ -20,7 +20,7 @@ export default function OrchidCard({ orchid }) {
             {/* CARD */}
             <Card className=" shadow-sm  p-4">
                 {isSpecial && (
-                    <Badge bg="danger" className="position-absolute top-0 end-0 m-2">
+                    <Badge bg="danger" className="position-absolute top-0 end-0 m-2OR">
                         Special Offer
                     </Badge>
                 )}
