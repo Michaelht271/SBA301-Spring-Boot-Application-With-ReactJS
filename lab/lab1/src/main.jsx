@@ -14,7 +14,6 @@ createRoot(document.getElementById('root')).render(
             <Header/>
             <main>
                 <Router/>
-
             </main>
             <Footer author={author} />
         </StrictMode>,
