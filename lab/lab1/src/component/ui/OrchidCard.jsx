@@ -2,7 +2,7 @@ import { useState } from "react"
 import Card from "react-bootstrap/Card"
 import Badge from "react-bootstrap/Badge"
 import Button from "react-bootstrap/Button"
-import OrchidModal from "./OrchidModal.jsx"
+import OrchidModal from "../modal/OrchidModal.jsx"
 
 
 export default function OrchidCard({ orchid }) {
