@@ -10,6 +10,12 @@ export default function OrchidCard({ orchid }) {
         image,
         isSpecial
     } = orchid
+
+    // Ensure image path points to public root when data uses relative paths like "images/1.jpg"
+    const resolvedImage = image && !/^https?:\/\//i.test(image)
+        ? (image.startsWith('/') ? image : `/${image}`)
+        : image
+
     // navigation to detail page instead of in-place modal
     return (
         <>
@@ -22,7 +28,7 @@ export default function OrchidCard({ orchid }) {
                 )}
                 <Card.Img
                     variant="top"
-                    src={image}
+                    src={resolvedImage}
                     alt={name}
                     style={{height: '200px',  objectFit: 'cover'}}
                 />

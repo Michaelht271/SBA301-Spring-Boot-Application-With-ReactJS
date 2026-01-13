@@ -13,10 +13,15 @@ export default function OrchidDetail({ orchid }) {
         isSpecial
     } = orchid;
 
+    // Normalize image path so public/images/... is referenced as /images/...
+    const resolvedImage = image && !/^https?:\/\//i.test(image)
+        ? (image.startsWith('/') ? image : `/${image}`)
+        : image
+
     return (
         <div className="orchid-detail">
             <h2>{name}</h2>
-            <img src={image} alt={name} style={{ maxWidth: '300px' }} />
+            <img src={resolvedImage} alt={name} style={{ maxWidth: '300px' }} />
             <p><strong>Category:</strong> {category}</p>
             <p><strong>Description:</strong> {description}</p>
             <p><strong>Price:</strong> ${price.toFixed(2)}</p>

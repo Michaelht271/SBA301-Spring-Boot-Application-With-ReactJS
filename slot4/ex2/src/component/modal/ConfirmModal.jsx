@@ -45,6 +45,11 @@ export default function ConfirmModal({ show, onHide, config = {}, detail = null 
 
     if (isDetail) {
         const { orchidName, image, description, category } = detail || {}
+
+        // Normalize image path to public root when needed
+        const resolvedImage = image && !/^https?:\/\//i.test(image)
+            ? (image.startsWith('/') ? image : `/${image}`)
+            : image
         return (
             <Modal show={show} onHide={close} centered>
                 <Modal.Header closeButton>
@@ -53,7 +58,7 @@ export default function ConfirmModal({ show, onHide, config = {}, detail = null 
 
                 <Modal.Body>
                     {image && (
-                        <img src={image} alt={orchidName || ''} className="img-fluid rounded mb-3" />
+                        <img src={resolvedImage} alt={orchidName || ''} className="img-fluid rounded mb-3" />
                     )}
                     {description && <p>{description}</p>}
                     {category && <p><strong>{category}</strong></p>}

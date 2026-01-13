@@ -4,27 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e1efbb3d-3b06-472d-b816-f2423b4dc692" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/modal/ConfirmModal.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/component/orchid-detail/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/orchid/index.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/contactRules.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/utils/validator.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ex2/.idea/copilot.data.migration.ask.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ex2/.idea/copilot.data.migration.ask2agent.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ex2/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ex2/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../ex2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/report_ex1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/report_ex1.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Router.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/modal/OrchidModal.jsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/ui/OrchidCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/ui/OrchidCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/contact/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/contact/index.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="e1efbb3d-3b06-472d-b816-f2423b4dc692" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,9 +21,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="38BFxz7HBjKYQ5Jrk0ps31KC5ug" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -57,7 +37,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "disable.download.node.interpreter.editor.notification": "true",
     "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/michael/Code/SBA301/slot4/ex1",
+    "last_opened_file_path": "/home/michael/Code/SBA301/slot4/ex2",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -85,6 +65,7 @@
       <option name="presentableId" value="Default" />
       <updated>1768265310925</updated>
       <workItem from="1768265312417" duration="13881000" />
+      <workItem from="1768292085129" duration="727000" />
     </task>
     <servers />
   </component>
