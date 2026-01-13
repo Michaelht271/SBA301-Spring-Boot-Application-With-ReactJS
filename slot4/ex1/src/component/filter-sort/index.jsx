@@ -4,11 +4,9 @@ export default function FilterSort({categories, onFilterChange, onSortChange}) {
     const handleFilterChange = (e) => {
         onFilterChange(e.target.value);
     }
-
     const handleSortChange = (e) => {
         onSortChange(e.target.value);
     }
-
     return (
         <Form className="mb-4">
             <Row>

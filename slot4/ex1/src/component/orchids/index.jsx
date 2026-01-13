@@ -4,15 +4,11 @@ import FilterSort from "../filter-sort/index.jsx";
 import { useState, useEffect } from "react";
 
 export default function Orchids({ orchids, searchTerm }) {
-
-
     const [sortOrder, setSortOrder] = useState("asc")
     const [selectedCategory, setSelectedCategory] = useState("")
     const [filteredOrchids, setFilteredOrchids] = useState(orchids);
 
-
-    useEffect(() => {
-        let result = [...orchids];
+    useEffect(() => {        let result = [...orchids];
         if(selectedCategory) {
             result = result.filter(orchid => orchid.category === selectedCategory);
 
@@ -55,11 +51,9 @@ export default function Orchids({ orchids, searchTerm }) {
     const onFilterChange = (category) => {
         setSelectedCategory(category);
     };
-
     const onSortChange = (sortOrder) => {
         setSortOrder(sortOrder);
     };
-
 
     return (
         <Container>
@@ -68,9 +62,7 @@ export default function Orchids({ orchids, searchTerm }) {
                 categories={categories}
                 onFilterChange={onFilterChange}
                 onSortChange={onSortChange}
-
             />
-
             <Row>
                 {filteredOrchids.map((orchid) => (
                     <Col key={orchid.id} md={3} className="mb-4">
