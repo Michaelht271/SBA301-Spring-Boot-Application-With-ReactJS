@@ -2,8 +2,9 @@ import Card from "react-bootstrap/Card"
 import Badge from "react-bootstrap/Badge"
 import Button from "react-bootstrap/Button"
 import { Link } from 'react-router-dom'
+import { memo } from 'react'
 
-export default function OrchidCard({ orchid }) {
+function OrchidCard({ orchid }) {
     const {
         orchidName: name,
         category,
@@ -30,6 +31,7 @@ export default function OrchidCard({ orchid }) {
                     variant="top"
                     src={resolvedImage}
                     alt={name}
+                    loading="lazy"
                     style={{height: '200px',  objectFit: 'cover'}}
                 />
                 <Card.Body>
@@ -45,3 +47,5 @@ export default function OrchidCard({ orchid }) {
         </>
     )
 }
+
+export default memo(OrchidCard)

@@ -1,23 +1,22 @@
 import { Container, Row, Col } from "react-bootstrap";
 import OrchidCard from "../ui/OrchidCard.jsx";
 import FilterSort from "../filter-sort/index.jsx";
-import { useState, useEffect } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 export default function Orchids({ orchids, searchTerm }) {
     const [sortOrder, setSortOrder] = useState("asc")
     const [selectedCategory, setSelectedCategory] = useState("")
-    const [filteredOrchids, setFilteredOrchids] = useState(orchids);
 
-    useEffect(() => {        let result = [...orchids];
+    const filteredOrchids = useMemo(() => {
+        let result = [...orchids];
         if(selectedCategory) {
             result = result.filter(orchid => orchid.category === selectedCategory);
-
         }
         if(searchTerm) {
             result = result.filter(orchid =>
                 orchid.orchidName.toLowerCase().includes(
                     searchTerm.toLowerCase()
-                ));
+                ));useMemo
         }
         switch (sortOrder) {
             case "asc":
@@ -43,17 +42,18 @@ export default function Orchids({ orchids, searchTerm }) {
             default:
                 break;
         }
-        setFilteredOrchids(result);
+        return result;
     }, [orchids, selectedCategory, searchTerm, sortOrder]);
 
-    const categories = [...new Set(orchids.map(o => o.category))];
+    const categories = useMemo(() => [...new Set(orchids.map(o => o.category))], [orchids]);
 
-    const onFilterChange = (category) => {
+    const onFilterChange = useCallback((category) => {
         setSelectedCategory(category);
-    };
-    const onSortChange = (sortOrder) => {
+    }, []);
+
+    const onSortChange = useCallback((sortOrder) => {
         setSortOrder(sortOrder);
-    };
+    }, []);
 
     return (
         <Container>
@@ -62,14 +62,22 @@ export default function Orchids({ orchids, searchTerm }) {
                 categories={categories}
                 onFilterChange={onFilterChange}
                 onSortChange={onSortChange}
+                currentCategory={selectedCategory}
+                currentSort={sortOrder}
             />
-            <Row>
-                {filteredOrchids.map((orchid) => (
-                    <Col key={orchid.id} md={3} className="mb-4">
-                        <OrchidCard orchid={orchid} />
-                    </Col>
-                ))}
-            </Row>
+            {filteredOrchids.length === 0 ? (
+                <div className="alert alert-warning text-center" role="alert">
+                    No orchids found matching your criteria.
+                </div>
+            ) : (
+                <Row>
+                    {filteredOrchids.map((orchid) => (
+                        <Col key={orchid.id} md={3} className="mb-4">
+                            <OrchidCard orchid={orchid} />
+                        </Col>
+                    ))}
+                </Row>
+            )}
         </Container>
     );
 }
