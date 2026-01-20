@@ -5,29 +5,24 @@ import Home from './pages/home/index.jsx'
 import OrchidDetail from './pages/orchid/index.jsx'
 import Login from './pages/login/index.jsx'
 import ProtectedRoute from './component/auth/ProtectedRoute.jsx'
-
-function Router({searchTerm}) {
+import MainLayout from './component/layout/MainLayout.jsx'
+function Router() {
     return (
         <Routes>
-            <Route path="/" element={<Home searchTerm={searchTerm} />} />
+            {/* Route công khai - không cần MainLayout */}
             <Route path="/login" element={<Login />} />
-            <Route path="/about" element={
+            {/* Routes bảo vệ - có MainLayout */}
+            <Route path="/" element={
                 <ProtectedRoute>
-                    <About />
+                    <MainLayout />
                 </ProtectedRoute>
-            } />
-            <Route path="/contact" element={
-                <ProtectedRoute>
-                    <Contact />
-                </ProtectedRoute>
-            } />
-            <Route path="/orchid/:id" element={
-                <ProtectedRoute>
-                    <OrchidDetail />
-                </ProtectedRoute>
-            } />
+            }>
+                <Route index element={<Home />} />
+                <Route path="about" element={<About />} />
+                <Route path="contact" element={<Contact />} />
+                <Route path="orchid/:id" element={<OrchidDetail />} />
+            </Route>
         </Routes>
     )
 }
-
 export default Router

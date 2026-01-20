@@ -161,10 +161,10 @@ export default function LoginForm({
                                     aria-hidden="true"
                                     className="me-2"
                                 />
-                                Signing in...
+                                Logging in...
                             </>
                         ) : (
-                            'Sign In'
+                            'Login'
                         )}
                     </Button>
                     <Button
