@@ -1,0 +1,114 @@
+{
+  "authors": {
+    "avatar": "/img/avatar.jpeg",
+    "name": "Michael Dev",
+    "email": "michael@gmail.com"
+  },
+  "banners": [
+    {
+      "id": 1,
+      "image": "/images/c1.png",
+      "title": "Bộ Sưu Tập Lan Phi Điệp",
+      "description": "Những dòng đột biến cực quý hiếm."
+    },
+    {
+      "id": 2,
+      "image": "/images/c2.png",
+      "title": "Lan Hồ Điệp Tết",
+      "description": "Vẻ đẹp sang trọng cho không gian nhà bạn."
+    },
+    {
+      "id": 3,
+      "image": "/images/c3.png",
+      "title": "Lan Hồ Điệp Đột biến",
+      "description": "Vẻ đẹp sang trọng lan đột biến."
+    }
+  ],
+  "orchid": {
+    "id": 1,
+    "name": "Ceasar 4N",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et.",
+    "category": "Dendrobium",
+    "image": "/img/orchids.jpg",
+    "special": true
+  },
+  "orchids": [
+    {
+      "id": "2",
+      "orchidName": "Mini ",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. or sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. or sit amet, consectetur adipiscing elit.",
+      "category": "Dendrobium",
+      "price": 25,
+      "isSpecial": true,
+      "image": "images/2.jpg"
+    },
+    {
+      "id": "3",
+      "orchidName": "Crystallinum",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. or sit amet, consectetur adipiscing elit.",
+      "category": "Dendrobium",
+      "price": 14,
+      "isSpecial": true,
+      "image": "images/3.jpg"
+    },
+    {
+      "id": "4",
+      "orchidName": "Damari",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. or sit amet, consectetur adipiscing elit.",
+      "category": "Dendrobium",
+      "price": 27,
+      "isSpecial": false,
+      "image": "images/4.jpg"
+    },
+    {
+      "id": "5",
+      "orchidName": "Busuangense",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. or sit amet, consectetur adipiscing elit.",
+      "category": "Dendrobium",
+      "price": 23,
+      "isSpecial": true,
+      "image": "images/5.jpg"
+    },
+    {
+      "id": "6",
+      "orchidName": "Pink Moth",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. or sit amet, consectetur adipiscing elit.",
+      "isSpecial": true,
+      "image": "images/6.jpg",
+      "category": "Oncidium",
+      "price": 34
+    },
+    {
+      "id": "7",
+      "orchidName": "Alba",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet.",
+      "category": "Dendrobium",
+      "price": 56,
+      "isSpecial": true,
+      "image": "images/7.jpg"
+    },
+    {
+      "id": "8",
+      "orchidName": "Singapore yellow dendro",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu. Duis molestie purus vel ligula suscipit, sit amet iaculis justo tempus. Cras pellentesque urna in feugiat fringilla. Vivamus dictum lacinia nulla, id rhoncus lectus fermentum et. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta lobortis ex. Morbi cursus consectetur diam, non lobortis massa gravida eu.",
+      "category": "Dendrobium",
+      "price": 43,
+      "isSpecial": true,
+      "image": "images/8.jpg"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "email": "admin@example.com",
+      "password": "adminpassword",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "email": "user@example.com",
+      "password": "userpassword",
+      "role": "user"
+    }
+  ]
+}
