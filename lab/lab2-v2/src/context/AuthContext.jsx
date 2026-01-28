@@ -1,7 +1,6 @@
 import { createContext, useContext, useReducer, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types'; // Import PropTypes
 import { ACTION, authReducer, getInitialState } from '../redux/auth-reducer.js'; // Import from new utility file
-
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {

@@ -5,7 +5,6 @@ import Background from '../../component/ui/background'
 import { LoginCard } from '../../component/ui/LoginCard'
 import LoginForm from '../../component/auth/form-login'
 import useLoginLogic from '../../services/auth/useLoginLogic'
-
 function Login() {
     const {
         username,
@@ -19,7 +18,6 @@ function Login() {
         handleCancel,
         resetError
     } = useLoginLogic();
-
     return (
         <Background>
             <Container className="d-flex justify-content-center">

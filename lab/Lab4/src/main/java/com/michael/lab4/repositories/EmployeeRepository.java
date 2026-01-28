@@ -1,21 +1,20 @@
 package com.michael.lab4.repositories;
 
 import com.michael.lab4.models.Employee;
+import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface EmployeeRepository {
+public interface EmployeeRepository extends PagingAndSortingRepository<Employee, String> {
 	
-	List<Employee> getAllEmployees();
-	
-	Optional<Employee> getEmployee();
+	List<Employee> findAll();
 	
 	Optional<Employee> getEmployeeByEmployeeId(String id);
 	
 	Optional<Employee> updateEmployee(Employee employee);
 	
-	String  deleteEmployee(String id);
+	String deleteEmployee(String id);
 	
 	Optional<Employee> createEmployee(Employee employee);
 	

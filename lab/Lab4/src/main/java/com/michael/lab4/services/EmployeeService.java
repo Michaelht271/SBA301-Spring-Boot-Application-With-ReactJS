@@ -1,6 +1,9 @@
 package com.michael.lab4.services;
 
 import com.michael.lab4.models.Employee;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,4 +19,8 @@ public interface EmployeeService {
 	String  deleteEmployee(String id);
 	
 	Optional<Employee> createEmployee(Employee employee);
+	
+	Iterable<Employee> getAllEmployees(Sort sort);
+	
+	Page<Employee> getAllEmployees(Pageable pageable);
 }

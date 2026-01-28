@@ -3,17 +3,17 @@ package com.michael.lab4.repositories;
 import com.michael.lab4.models.Employee;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Repository;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+
 @Repository
-public  class EmployeeRepositoryImpl implements EmployeeRepository {
+public class EmployeeRepositoryImpl implements EmployeeRepository {
 	
 	private final static List<Employee> employees = new ArrayList<Employee>(
 			List.of(
@@ -24,38 +24,40 @@ public  class EmployeeRepositoryImpl implements EmployeeRepository {
 					new Employee("EMP05", "Christopher Robert", "HR Manager", 3000),
 					new Employee("EMP06", "George Ronald", "Developer", 1000)
 			)
-			);
+	);
 	
 	@Override
-	public List<Employee> getAllEmployees() {
+	public List<Employee> findAll() {
 		return employees;
 	}
-	@Override
-	public Optional<Employee> getEmployee() {
-		return Optional.empty();
-	}
+	
 	@Override
 	public Optional<Employee> getEmployeeByEmployeeId(String id) {
-		return employees.stream().filter(employee ->id.equals(employee.getEmployeeId())).findFirst();
+		return employees.stream().filter(employee -> id.equals(employee.getEmployeeId())).findFirst();
 	}
+	
 	@Override
 	public Optional<Employee> updateEmployee(Employee employee) {
+		if (employee == null) {
+			return Optional.empty();
+		}
 		Optional<Employee> existEmployee = getEmployeeByEmployeeId(employee.getEmployeeId());
-		if(existEmployee.isEmpty()) {
+		if (existEmployee.isEmpty()) {
 			return Optional.empty();
 		}
 		return existEmployee.map(emp -> {
-			emp.setName(employee.getName());
-			emp.setDescription(employee.getDescription());
-			emp.setSalary(employee.getSalary());
-			return emp;
-		}
+			                         emp.setName(employee.getName());
+			                         emp.setDescription(employee.getDescription());
+			                         emp.setSalary(employee.getSalary());
+			                         return emp;
+		                         }
 		);
 	}
+	
 	@Override
 	public String deleteEmployee(String id) {
 		Optional<Employee> existEmployee = getEmployeeByEmployeeId(id);
-		if(existEmployee.isEmpty()) {
+		if (existEmployee.isEmpty()) {
 			return "Meo co de removed";
 		}
 		employees.remove(existEmployee.get());
@@ -64,7 +66,7 @@ public  class EmployeeRepositoryImpl implements EmployeeRepository {
 	@Override
 	public Optional<Employee> createEmployee(Employee employee) {
 		Optional<Employee> existEmployee = getEmployeeByEmployeeId(employee.getEmployeeId());
-		if(existEmployee.isEmpty()) {
+		if (existEmployee.isEmpty()) {
 			employees.add(employee);
 			return Optional.of(employee);
 		}
@@ -72,59 +74,59 @@ public  class EmployeeRepositoryImpl implements EmployeeRepository {
 		return Optional.empty();
 		
 	}
-
 	
-	private Comparator<Employee> buildComparator(Sort sort) {
+	@Override
+	public Iterable<Employee> findAll(Sort sort) {
+		List<Employee> sortedEmployees = new ArrayList<>(employees);
 		
 		Comparator<Employee> comparator = null;
 		
 		for (Sort.Order order : sort) {
-			Comparator<Employee> fieldComparator = Comparator.comparing(emp -> {
-				try {
-					Field field = Employee.class.getDeclaredField(order.getProperty());
-					field.setAccessible(true);
-					return (Comparable) field.get(emp);
-				} catch (Exception e) {
-					throw new RuntimeException("Invalid sort field: " + order.getProperty(), e);
-				}
-			});
-			
-			if (order.getDirection() == Sort.Direction.DESC) {
-				fieldComparator = fieldComparator.reversed();
+			Comparator<Employee> currentComparator = null;
+			switch (order.getProperty()) {
+				case "employeeId":
+					currentComparator = Comparator.comparing(Employee::getEmployeeId);
+					break;
+				case "name":
+					currentComparator = Comparator.comparing(Employee::getName);
+					break;
+				case "salary":
+					currentComparator = Comparator.comparing(Employee::getSalary);
+					break;
+				default:
+					// Optionally handle unknown properties, e.g., by throwing an exception or ignoring
+					throw new IllegalArgumentException("Cannot sort by unknown property: " + order.getProperty());
 			}
 			
-			comparator = (comparator == null)
-					? fieldComparator
-					: comparator.thenComparing(fieldComparator);
+			if (order.isDescending()) {
+				currentComparator = currentComparator.reversed();
+			}
+			
+			if (comparator == null) {
+				comparator = currentComparator;
+			} else {
+				comparator = comparator.thenComparing(currentComparator);
+			}
 		}
 		
-		return comparator;
-	}
-
-	
-	public Page<Employee> findAll(int page, int size, Sort sort) {
-		
-		List<Employee> data = new ArrayList<>(employees);
-		
-		// sort
-		if (sort != null && sort.isSorted()) {
-			data.sort(buildComparator(sort));
+		if (comparator != null) {
+			sortedEmployees.sort(comparator);
 		}
 		
-		int total = data.size();
-		int from = page * size;
-		int to = Math.min(from + size, total);
-		
-		List<Employee> content =
-				from >= total ? List.of() : data.subList(from, to);
-		
-		return new PageImpl<>(
-				content,
-				PageRequest.of(page, size, sort),
-				total
-		);
+		return sortedEmployees;
 	}
-	
-	
-	
+	@Override
+	public Page<Employee> findAll(Pageable pageable) {
+		List<Employee> allEmployees = (List<Employee>) findAll(pageable.getSort());
+		
+		int start = (int) pageable.getOffset();
+		int end = Math.min((start + pageable.getPageSize()), allEmployees.size());
+		
+		List<Employee> pageContent = new ArrayList<>();
+		if (start <= end) {
+			pageContent = allEmployees.subList(start, end);
+		}
+		
+		return new PageImpl<>(pageContent, pageable, allEmployees.size());
+	}
 }
