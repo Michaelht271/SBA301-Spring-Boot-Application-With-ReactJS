@@ -28,7 +28,8 @@ public class EmployeeServicesImpl implements  EmployeeService {
 	}
 
 	@Override
-	public Optional<Employee> updateEmployee(Employee employee) {
+	public Optional<Employee> updateEmployee(Employee employee) throws Exception {
+		
 		return updateEmployee(employee);
 	}
 	@Override

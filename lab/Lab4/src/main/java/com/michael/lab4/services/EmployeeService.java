@@ -11,7 +11,7 @@ public interface EmployeeService {
 	Optional<Employee> getEmployee(String id);
 
 	
-	Optional<Employee> updateEmployee(Employee employee);
+	Optional<Employee> updateEmployee(Employee employee) throws Exception;
 	
 	String  deleteEmployee(String id);
 	
