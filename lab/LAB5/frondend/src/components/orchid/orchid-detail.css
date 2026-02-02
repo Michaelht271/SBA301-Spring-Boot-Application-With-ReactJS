@@ -1,0 +1,105 @@
+/* Styles for Orchid detail page (_id.jsx) */
+
+/*.orchid-detail-container {*/
+/*  min-height: 100vh;*/
+/*  padding: 2rem 1rem;*/
+/*  background: linear-gradient(135deg, rgba(0,0,0,0.05), rgba(0,0,0,0.1));*/
+/*}*/
+
+/*.orchid-detail-card {*/
+/*  border-radius: 16px;*/
+/*  box-shadow: 0 10px 40px rgba(0,0,0,0.1);*/
+/*  overflow: hidden;*/
+/*  border: none;*/
+/*  backdrop-filter: blur(10px);*/
+/*}*/
+
+.orchid-detail-card .card-img-top {
+  height: 500px;
+  object-fit: cover;
+  border-radius: 16px 16px 0 0;
+}
+
+.orchid-detail-body {
+  padding: 2.5rem;
+  background: rgba(255,255,255,0.02);
+}
+
+.orchid-detail-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.orchid-detail-section {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.orchid-detail-label {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #555;
+  min-width: 120px;
+}
+
+.orchid-detail-badge {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  display: inline-block;
+}
+
+.orchid-detail-description {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: rgba(0,0,0,0.03);
+  border-radius: 12px;
+  border-left: 4px solid #0d6efd;
+  line-height: 1.8;
+  color: #333;
+  font-size: 1rem;
+}
+
+.orchid-detail-actions {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.orchid-detail-actions .btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.orchid-detail-actions .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .orchid-detail-card .card-img-top {
+    height: 300px;
+  }
+
+  .orchid-detail-body {
+    padding: 1.5rem;
+  }
+
+  .orchid-detail-title {
+    font-size: 1.8rem;
+  }
+
+  .orchid-detail-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
