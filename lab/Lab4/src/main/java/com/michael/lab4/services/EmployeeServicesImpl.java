@@ -39,8 +39,9 @@ public class EmployeeServicesImpl implements  EmployeeService {
 	}
 	
 	@Override
-	public Optional<Employee> updateEmployee(Employee employee) {
-		return employeeRepository.updateEmployee(employee);
+	public Optional<Employee> updateEmployee(Employee employee) throws Exception {
+		
+		return updateEmployee(employee);
 	}
 	@Override
 	public String deleteEmployee(String id) {
