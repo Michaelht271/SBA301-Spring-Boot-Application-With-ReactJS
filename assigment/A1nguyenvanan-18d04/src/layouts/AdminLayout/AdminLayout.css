@@ -1,0 +1,45 @@
+/* Basic wrapper styles */
+#wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+  min-width: 250px;
+  max-width: 250px;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+#sidebar-wrapper .list-group {
+  width: 100%;
+}
+
+.list-group-item.list-group-item-action {
+    border: 0;
+}
+
+/* Page Content Wrapper */
+.page-content-bg {
+  background-color: #f8f9fa; /* A very light grey background */
+}
+
+#page-content-wrapper {
+  min-width: 0;
+  width: 100%;
+  padding-top: 56px; /* Added padding to clear the fixed header */
+}
+
+
+
+
+/* Optional: Add a toggled state for collapsible sidebar */
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -250px;
+}

@@ -1,0 +1,121 @@
+{
+  "systemAccounts": [
+    {
+      "id": 1,
+      "accountName": "admin",
+      "accountEmail": "admin@example.com",
+      "accountRole": "Admin",
+      "accountPassword": "password123"
+    },
+    {
+      "id": 2,
+      "accountName": "john.doe",
+      "accountEmail": "john.doe@example.com",
+      "accountRole": "Staff",
+      "accountPassword": "password456"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "categoryName": "Technology",
+      "categoryDescription": "All about the latest in tech.",
+      "parentCategoryID": null,
+      "isActive": true
+    },
+    {
+      "id": 2,
+      "categoryName": "Programming",
+      "categoryDescription": "Coding and development.",
+      "parentCategoryID": 1,
+      "isActive": true
+    },
+    {
+      "id": 3,
+      "categoryName": "Sports",
+      "categoryDescription": "News from the world of sports.",
+      "parentCategoryID": null,
+      "isActive": false
+    }
+  ],
+  "tags": [
+    {
+      "id": 1,
+      "tagName": "React",
+      "note": "A JavaScript library for building user interfaces"
+    },
+    {
+      "id": 2,
+      "tagName": "JavaScript",
+      "note": "The programming language of the Web"
+    },
+    {
+      "id": 3,
+      "tagName": "API",
+      "note": "Application Programming Interface"
+    }
+  ],
+  "newsArticles": [
+    {
+      "id": 1,
+      "newsTitle": "React 19 is Here!",
+      "headline": "The new version of React comes with exciting features.",
+      "createdDate": "2024-07-28T10:00:00Z",
+      "newsContent": "The React team has officially released version 19...",
+      "newsSource": "Official React Blog",
+      "categoryID": 2,
+      "newsStatus": "Published",
+      "createdByID": 2,
+      "updatedByID": 2,
+      "modifiedDate": "2024-07-28T10:00:00Z"
+    },
+    {
+      "id": 2,
+      "newsTitle": "Building a REST API with Node.js",
+      "headline": "A comprehensive guide to creating your first API.",
+      "createdDate": "2024-07-27T14:30:00Z",
+      "newsContent": "In this tutorial, we will walk through the steps to build a RESTful API...",
+      "newsSource": "Dev Community",
+      "categoryID": 2,
+      "newsStatus": "Draft",
+      "createdByID": 1,
+      "updatedByID": 1,
+      "modifiedDate": "2024-07-27T14:30:00Z"
+    },
+    {
+      "id": null,
+      "newsTitle": "gg",
+      "headline": "gggg",
+      "newsContent": "ggggg",
+      "newsSource": "111",
+      "categoryID": 1,
+      "newsStatus": "Published",
+      "createdByID": 1,
+      "updatedByID": 1,
+      "createdDate": "2026-02-02T15:48:42.443Z",
+      "modifiedDate": "2026-02-02T15:48:42.443Z"
+    }
+  ],
+  "newsTags": [
+    {
+      "newsArticleID": 1,
+      "tagID": 1,
+      "id": 1
+    },
+    {
+      "newsArticleID": 1,
+      "tagID": 2,
+      "id": 2
+    },
+    {
+      "newsArticleID": 2,
+      "tagID": 2,
+      "id": 3
+    },
+    {
+      "newsArticleID": 2,
+      "tagID": 3,
+      "id": 4
+    }
+  ]
+}

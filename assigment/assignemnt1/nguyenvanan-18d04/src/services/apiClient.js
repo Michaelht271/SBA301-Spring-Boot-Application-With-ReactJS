@@ -1,51 +1,43 @@
-const API_BASE_URL = 'http://localhost:8080';
+import axios from 'axios';
 
-const apiClient = {
-  get: async (endpoint) => {
-    const response = await fetch(`${API_BASE_URL}/${endpoint}`);
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
+// Create an axios instance
+const apiClient = axios.create({
+  baseURL: 'http://localhost:8080/api', // The base URL for the Spring Boot backend
+  headers: {
+    'Content-Type': 'application/json',
   },
+});
 
-  post: async (endpoint, data) => {
-    const response = await fetch(`${API_BASE_URL}/${endpoint}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
+/*
+  Add a request interceptor to include the auth token in headers.
+  This is a placeholder for now. When authentication is fully implemented,
+  this interceptor will fetch the token from local storage or another secure place.
+*/
+apiClient.interceptors.request.use(
+  (config) => {
+    // const token = localStorage.getItem('authToken');
+    // if (token) {
+    //   config.headers['Authorization'] = `Bearer ${token}`;
+    // }
+    return config;
   },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
-  put: async (endpoint, data) => {
-    const response = await fetch(`${API_BASE_URL}/${endpoint}/${data.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  },
-
-  delete: async (endpoint, id) => {
-    const response = await fetch(`${API_BASE_URL}/${endpoint}/${id}`, {
-      method: 'DELETE',
-    });
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return response.json();
-  },
-};
+/*
+  Add a response interceptor to handle global errors, like 401 Unauthorized.
+*/
+apiClient.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    // if (error.response && error.response.status === 401) {
+    //   // Handle unauthorized access, e.g., redirect to login
+    //   window.location = '/login';
+    // }
+    return Promise.reject(error);
+  }
+);
 
 export default apiClient;
