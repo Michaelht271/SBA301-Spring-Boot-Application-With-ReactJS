@@ -51,7 +51,6 @@ export default function useLoginLogic() {
         setValidated(false);
         navigate('/');
     };
-
     const resetError = () => setError('');
 
     return {

@@ -1,6 +1,8 @@
-import PropTypes from 'prop-types'; // Import PropTypes
+ // Import PropTypes
 
-export default function OrchidDetail({ orchid }) {
+import PropTypes from "prop-types";
+
+ export default function OrchidDetail({ orchid }) {
 
     if (!orchid) {
         return <div>Orchid not found</div>;
