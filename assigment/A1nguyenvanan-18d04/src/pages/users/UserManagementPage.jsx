@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Spinner } from 'react-bootstrap';
+import { Button, Modal, Spinner, FormControl, InputGroup } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-import UserTable from '../../features/users/components/UserTable.jsx';
+
 import UserForm from '../../features/users/components/UserForm.jsx';
 import userService from '../../services/userService.js';
-
+import UserTable from '../../features/users/components/UserTable.jsx';
 const UserManagementPage = () => {
   const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentUser, setCurrentUser] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchUsers();
@@ -40,8 +41,8 @@ const UserManagementPage = () => {
 
   const handleSaveUser = async (user) => {
     try {
-      if (user.id) {
-        await userService.update(user.id, user);
+      if (user.accountId) {
+        await userService.update(user.accountId, user);
         toast.success("User updated successfully!");
       } else {
         await userService.create(user);
@@ -67,7 +68,16 @@ const UserManagementPage = () => {
       }
     }
   };
-  
+
+  // Filter users by search term
+  const normalizedQuery = (searchTerm || '').trim().toLowerCase();
+  const filteredUsers = (userList || []).filter((user) => {
+    const name = (user?.accountName || '').toLowerCase();
+    const email = (user?.accountEmail || '').toLowerCase();
+    const role = (user?.accountRole || '').toLowerCase();
+    return name.includes(normalizedQuery) || email.includes(normalizedQuery) || role.includes(normalizedQuery);
+  });
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -79,24 +89,35 @@ const UserManagementPage = () => {
       );
     }
 
-    if (userList.length === 0) {
+    if (filteredUsers.length === 0) {
       return (
         <div className="text-center mt-5">
           <h4>No users found.</h4>
-          <p>Click 'Add New User' to get started.</p>
+          <p>{userList.length === 0 ? "Click 'Add New User' to get started." : "Try a different search term."}</p>
         </div>
       );
     }
 
-    return <UserTable userList={userList} onEdit={handleShowModal} onDelete={handleDeleteUser} />;
+    return <UserTable userList={filteredUsers} onEdit={handleShowModal} onDelete={handleDeleteUser} />;
   };
 
   return (
     <div>
       <h1 className="mb-4">User Management</h1>
-      <Button variant="primary" onClick={() => handleShowModal(null)} className="mb-3">
-        Add New User
-      </Button>
+
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <Button variant="primary" onClick={() => handleShowModal(null)}>
+          Add New User
+        </Button>
+        <InputGroup className="w-25">
+          <FormControl
+            placeholder="Search by name, email, or role"
+            aria-label="Search users"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </InputGroup>
+      </div>
 
       {renderContent()}
 

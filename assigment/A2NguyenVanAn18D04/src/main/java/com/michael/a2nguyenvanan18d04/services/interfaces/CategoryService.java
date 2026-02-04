@@ -1,5 +1,6 @@
 package com.michael.a2nguyenvanan18d04.services.interfaces;
 
+import com.michael.a2nguyenvanan18d04.dto.CategoryDTO;
 import com.michael.a2nguyenvanan18d04.models.Category;
 
 import java.util.List;
@@ -9,7 +10,7 @@ public interface CategoryService {
 	
 	List<Category> getAllCategories();
 	Optional<Category> getCategoryById(Long id);
-	boolean createCategory(Category category);
-	boolean updateCategory(Category  category);
+	Category createCategory(CategoryDTO categoryDTO);
+	Category updateCategory(CategoryDTO categoryDTO);
 	boolean deleteCategoryById(Long id);
 }

@@ -40,8 +40,8 @@ const UserManagementPage = () => {
 
   const handleSaveUser = async (user) => {
     try {
-      if (user.id) {
-        await userService.update(user.id, user);
+      if (user.accountId) {
+        await userService.update(user.accountId, user);
         toast.success("User updated successfully!");
       } else {
         await userService.create(user);
@@ -55,10 +55,10 @@ const UserManagementPage = () => {
     handleCloseModal();
   };
 
-  const handleDeleteUser = async (id) => {
+  const handleDeleteUser = async (accountId) => {
     if (window.confirm('Are you sure you want to delete this user?')) {
       try {
-        await userService.remove(id);
+        await userService.remove(accountId);
         toast.success("User deleted successfully!");
         fetchUsers();
       } catch (error) {

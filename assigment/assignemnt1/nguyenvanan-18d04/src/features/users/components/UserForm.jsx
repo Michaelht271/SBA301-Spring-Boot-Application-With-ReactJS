@@ -4,10 +4,10 @@ import { Form, Button } from 'react-bootstrap';
 const UserForm = ({ user, onSave, onCancel }) => {
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
-    id: null,
+      accountId: null,
     accountName: '',
     accountEmail: '',
-    accountRole: 'Staff',
+    accountRole: 'STAFF',
     accountPassword: '',
   });
 
@@ -16,10 +16,10 @@ const UserForm = ({ user, onSave, onCancel }) => {
       setFormData({ ...user, accountPassword: '' });
     } else {
       setFormData({
-        id: null,
+        accountId: null,
         accountName: '',
         accountEmail: '',
-        accountRole: 'Staff',
+        accountRole: 'STAFF',
         accountPassword: '',
       });
     }
@@ -96,6 +96,7 @@ const UserForm = ({ user, onSave, onCancel }) => {
         <Form.Select name="accountRole" value={formData.accountRole} onChange={handleChange}>
           <option value="Admin">Admin</option>
           <option value="Staff">Staff</option>
+            <option value="CUSTOMER">Customer</option>
         </Form.Select>
       </Form.Group>
 

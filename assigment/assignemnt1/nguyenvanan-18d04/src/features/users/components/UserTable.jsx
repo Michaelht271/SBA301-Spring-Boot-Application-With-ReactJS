@@ -14,17 +14,19 @@ const UserTable = ({ userList, onEdit, onDelete }) => {
         </tr>
       </thead>
       <tbody>
-        {userList.map((user) => (
-          <tr key={user.id}>
-            <td>{user.id}</td>
+        {userList && userList.map((user) => (
+          <tr key={user.accountId}>
+            <td>{user.accountId}</td>
             <td>{user.accountName}</td>
             <td>{user.accountEmail}</td>
-            <td>{user.accountRole}</td>
+              <td>
+                  {user.roles?.map(role => role.replace('ROLE_', '')).join(', ')}
+              </td>
             <td>
               <Button variant="info" size="sm" className="me-2" onClick={() => onEdit(user)}>
                 Edit
               </Button>
-              <Button variant="danger" size="sm" onClick={() => onDelete(user.id)}>
+              <Button variant="danger" size="sm" onClick={() => onDelete(user.accountId)}>
                 Delete
               </Button>
             </td>

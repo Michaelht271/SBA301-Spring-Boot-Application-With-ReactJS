@@ -16,8 +16,8 @@ const CategoryTable = ({ categoryList, onEdit, onDelete }) => {
       </thead>
       <tbody>
         {categoryList.map((category) => (
-          <tr key={category.id}>
-            <td>{category.id}</td>
+          <tr key={category.categoryId}>
+            <td>{category.categoryId}</td>
             <td>{category.categoryName}</td>
             <td>{category.categoryDescription}</td>
             <td>{category.parentCategoryID || 'None'}</td>
@@ -32,7 +32,7 @@ const CategoryTable = ({ categoryList, onEdit, onDelete }) => {
               <Button variant="info" size="sm" className="me-2" onClick={() => onEdit(category)}>
                 Edit
               </Button>
-              <Button variant="danger" size="sm" onClick={() => onDelete(category.id)}>
+              <Button variant="danger" size="sm" onClick={() => onDelete(category.categoryId)}>
                 Delete
               </Button>
             </td>

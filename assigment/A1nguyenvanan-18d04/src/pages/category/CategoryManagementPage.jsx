@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Spinner } from 'react-bootstrap';
+import { Button, Modal, Spinner, FormControl, InputGroup } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import CategoryTable from '../../features/categories/components/CategoryTable.jsx';
 import CategoryForm from '../../features/categories/components/CategoryForm.jsx';
@@ -10,6 +10,7 @@ const CategoryManagementPage = () => {
   const [loading, setLoading] = useState(true);
   const [showModal, setShowModal] = useState(false);
   const [currentCategory, setCurrentCategory] = useState(null);
+  const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchCategories();
@@ -40,10 +41,14 @@ const CategoryManagementPage = () => {
 
   const handleSaveCategory = async (category) => {
     try {
-      if (category.id) {
-        await categoryService.update(category.id, category);
+      console.log('Received category data:', category); // Debug log
+      console.log('Category ID:', category.categoryId); // Debug log
+      if (category.categoryId) {
+        console.log('Updating category with ID:', category.categoryId); // Debug log
+        await categoryService.update(category.categoryId, category);
         toast.success("Category updated successfully!");
       } else {
+        console.log('Creating new category'); // Debug log
         await categoryService.create(category);
         toast.success("Category created successfully!");
       }
@@ -67,7 +72,15 @@ const CategoryManagementPage = () => {
       }
     }
   };
-  
+
+  // Filter categories by search term
+  const normalizedQuery = (searchTerm || '').trim().toLowerCase();
+  const filteredCategories = (categoryList || []).filter((category) => {
+    const name = (category?.categoryName || '').toLowerCase();
+    const description = (category?.categoryDescription || '').toLowerCase();
+    return name.includes(normalizedQuery) || description.includes(normalizedQuery);
+  });
+
   const renderContent = () => {
     if (loading) {
       return (
@@ -79,28 +92,39 @@ const CategoryManagementPage = () => {
       );
     }
 
-    if (categoryList.length === 0) {
+    if (filteredCategories.length === 0) {
       return (
         <div className="text-center mt-5">
           <h4>No categories found.</h4>
-          <p>Click 'Add New Category' to get started.</p>
+          <p>{categoryList.length === 0 ? "Click 'Add New Category' to get started." : "Try a different search term."}</p>
         </div>
       );
     }
 
-    return <CategoryTable categoryList={categoryList} onEdit={handleShowModal} onDelete={handleDeleteCategory} />;
+    return <CategoryTable categoryList={filteredCategories} onEdit={handleShowModal} onDelete={handleDeleteCategory} />;
   };
 
   return (
     <div>
       <h1 className="mb-4">Category Management</h1>
-      <Button variant="primary" onClick={() => handleShowModal(null)} className="mb-3">
-        Add New Category
-      </Button>
+
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <Button variant="primary" onClick={() => handleShowModal(null)}>
+          Add New Category
+        </Button>
+        <InputGroup className="w-25">
+          <FormControl
+            placeholder="Search categories"
+            aria-label="Search categories"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </InputGroup>
+      </div>
 
       {renderContent()}
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal show={showModal} onHide={handleCloseModal} size="lg">
         <Modal.Header closeButton>
           <Modal.Title>{currentCategory ? 'Edit Category' : 'Add Category'}</Modal.Title>
         </Modal.Header>
@@ -113,3 +137,4 @@ const CategoryManagementPage = () => {
 };
 
 export default CategoryManagementPage;
+

@@ -1,9 +1,15 @@
 server:
   port: 8081
+application:
+  jwt:
+    secretKey: SecureKeyMustBeLongEnoughForHS256AlgorithmOrLongerSoThisIsAnExampleSecureKeyMustBeLongEnoughForHS256AlgorithmOrLongerSoThisIsAnExample
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 14
 
 spring:
   application:
     name: A2-NguyenVanAn18D04
+
 
   datasource:
     url: jdbc:sqlserver://localhost:1433;databaseName=A2NguyenVanAn_18D04;encrypt=true;trustServerCertificate=true;
@@ -22,8 +28,5 @@ spring:
         dialect: org.hibernate.dialect.SQLServerDialect
         format_sql: true
 
-jwt:
-  secret: ThisIsASecretKeyForJWTSecurityAndItShouldBeLongEnoughToPreventBruteForceAttacks
-  expiration: 3600000 # 1 hour
 
 

@@ -44,6 +44,7 @@ server.post('/api/auth/login', (req, res) => {
   }
 });
 
+
 // Remove /api prefix for other requests that the rewriter doesn't handle
 // This is now less critical due to the explicit rewriter, but can serve as a fallback.
 server.use((req, res, next) => {

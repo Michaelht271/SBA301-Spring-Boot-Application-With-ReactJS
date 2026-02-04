@@ -1,10 +1,12 @@
 import apiClient from './apiClient';
 
-const API_ENDPOINT = '/users';
+
+const API_ENDPOINT = '/api/users';
 
 const userService = {
   getAll: async () => {
     const response = await apiClient.get(API_ENDPOINT);
+    console.log(response.data);
     return response.data;
   },
   getById: async (id) => {

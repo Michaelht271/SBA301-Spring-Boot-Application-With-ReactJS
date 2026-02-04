@@ -8,12 +8,18 @@ import './AdminLayout.css';
 
 const AdminLayout = () => {
   const [isToggled, setIsToggled] = useState(false);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(() => authService.getCachedUser());
 
   useEffect(() => {
-    // Fetch user details from the auth service on component mount
-    const currentUser = authService.getCurrentUser();
-    setUser(currentUser);
+
+    const refreshUser = async () => {
+      const currentUser = await authService.getCurrentUser();
+      if (currentUser) {
+        setUser(currentUser);
+      }
+    };
+
+    refreshUser();
   }, []);
 
   const handleToggle = () => {

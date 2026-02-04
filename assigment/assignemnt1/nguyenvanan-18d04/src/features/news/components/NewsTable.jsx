@@ -9,18 +9,18 @@ const NewsTable = ({ newsList, onEdit, onDelete }) => {
           <th>#</th>
           <th>Title</th>
           <th>Headline</th>
-          <th>Category ID</th>
+          <th>Category</th>
           <th>Status</th>
           <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         {newsList.map((news) => (
-          <tr key={news.id}>
-            <td>{news.id}</td>
+          <tr key={news.newArticleId}>
+            <td>{news.newArticleId}</td>
             <td>{news.newsTitle}</td>
-            <td>{news.headline}</td>
-            <td>{news.categoryID}</td>
+            <td>{news.headLine}</td>
+            <td>{news.category?.categoryName || 'Unassigned'}</td>
             <td>
               <Badge bg={news.newsStatus === 'Published' ? 'primary' : 'secondary'}>
                 {news.newsStatus}
@@ -30,7 +30,7 @@ const NewsTable = ({ newsList, onEdit, onDelete }) => {
               <Button variant="info" size="sm" className="me-2" onClick={() => onEdit(news)}>
                 Edit
               </Button>
-              <Button variant="danger" size="sm" onClick={() => onDelete(news.id)}>
+              <Button variant="danger" size="sm" onClick={() => onDelete(news.newArticleId)}>
                 Delete
               </Button>
             </td>

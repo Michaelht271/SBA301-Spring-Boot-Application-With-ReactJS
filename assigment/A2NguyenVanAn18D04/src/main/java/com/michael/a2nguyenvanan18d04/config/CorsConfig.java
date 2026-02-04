@@ -1,51 +1,57 @@
-
-
 package com.michael.a2nguyenvanan18d04.config;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-import org.springframework.web.filter.CorsFilter;
 
 import java.util.List;
 
 @Configuration
 public class CorsConfig {
+	
+
 	@Bean
-	public CorsFilter corsFilter() {
-		CorsConfiguration config = new CorsConfiguration();
+	public CorsConfigurationSource corsConfigurationSource() {
+		CorsConfiguration corsConfiguration = new CorsConfiguration();
 		
-		config.setAllowCredentials(false);
-		config.setAllowedOrigins(List.of("http://localhost:3000", "http://localhost:5173"));
-		config.setAllowedMethods(
-				List.of("POST", "PUT", "PATCH", "GET", "OPTIONS", "DELETE")
-		);
+		// 1. Allowed Origins
+		corsConfiguration.setAllowedOrigins(List.of(
+				"http://localhost:5173"
+		));
 		
-		config.setAllowedHeaders(
-				List.of(
-						"Authorization",
-						"Accept",
-						"X-Requested-With",
-						"Connt-Type",
-						"Access-Control-Request-Method",
-						"Access-Control-Request-Headers"
-				)
-		);
+		// 2. Allowed Methods
+		corsConfiguration.setAllowedMethods(List.of(
+				"GET", "POST", "PUT", "DELETE", "OPTIONS"
+		));
 		
-		config.setExposedHeaders(
-				List.of(
-						"Access-Control-Allow-Origin",
-						"Access-Control-Allow-Credentials"
-				)
-		);
+		// 3. Allowed Headers - include Authorization and other required headers
+		corsConfiguration.setAllowedHeaders(List.of(
+				"Authorization",
+				"Accept",
+				"X-Requested-With",
+				"Content-Type",
+				"Access-Control-Request-Method",
+				"Access-Control-Request-Headers"
+		));
 		
-		config.setMaxAge(3600L);
+		// 4. Exposed Headers
+		corsConfiguration.setExposedHeaders(List.of(
+				"Access-Control-Allow-Origin",
+				"Access-Control-Allow-Credentials"
+		));
 		
-		UrlBasedCorsConfigurationSource source =
-				new UrlBasedCorsConfigurationSource();
-		source.registerCorsConfiguration("/**", config);
+		// 5. Credentials
+		corsConfiguration.setAllowCredentials(true);
 		
-		return new CorsFilter(source);
+		// 6. Cache
+		corsConfiguration.setMaxAge(3600L);
+		
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+		source.registerCorsConfiguration("/**", corsConfiguration);
+		
+		return source;
 	}
 }

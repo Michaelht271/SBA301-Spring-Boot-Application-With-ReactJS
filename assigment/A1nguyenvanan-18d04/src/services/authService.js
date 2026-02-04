@@ -1,44 +1,196 @@
 import apiClient from './apiClient';
 
+// Configuration: update these to match your backend
+const API_USE_COOKIES = false; // set true if backend uses HttpOnly cookies and requires CSRF
+const AUTH_HEADER_NAME = 'authorization'; // header name (axios lower-cases response headers)
+const TOKEN_STORAGE_KEY = 'app_access_token';
+const USER_STORAGE_KEY = 'app_current_user';
+
+let inMemoryToken = null;
+let inMemoryUser = null;
+
+const normalizeAuthority = (authority) => {
+    const raw = typeof authority === 'string' ? authority : authority?.authority;
+    if (!raw) return null;
+    return raw.replace(/^ROLE_/i, '').trim().toUpperCase();
+};
+
+const deriveRoles = (authorities = []) => {
+    const roles = authorities.map(normalizeAuthority).filter(Boolean);
+    return Array.from(new Set(roles));
+};
+
+const derivePrimaryRole = (roles = []) => {
+    if (roles.includes('ADMIN')) return 'ADMIN';
+    if (roles.includes('STAFF')) return 'STAFF';
+    return roles[0] || null;
+};
+
+const normalizeUser = (user) => {
+    if (!user) return null;
+    const authorities = user.authorities || user.roles || [];
+    const roles = deriveRoles(authorities);
+    const accountRole = user.accountRole || derivePrimaryRole(roles);
+    return {
+        ...user,
+        authorities,
+        roles,
+        accountRole,
+    };
+};
+
 const authService = {
-  login: async (email, password) => {
-    try {
-      // The backend is expected to return user data and a token
-      const response = await apiClient.post('/auth/login', { email, password });
 
-      if (response.data && response.data.token) {
-        // Store user info and token in localStorage
-        localStorage.setItem('user', JSON.stringify(response.data.user));
-        localStorage.setItem('token', response.data.token);
+    // Token helpers
+    setToken: (rawToken, { persistent = true } = {}) => {
+        inMemoryToken = rawToken;
+        if (persistent && typeof window !== 'undefined' && window.localStorage) {
+            localStorage.setItem(TOKEN_STORAGE_KEY, rawToken);
+        }
+    },
 
-        // You might want to set the token in the apiClient header for subsequent requests
-        apiClient.defaults.headers.common['Authorization'] = `Bearer ${response.data.token}`;
+    getToken: () => {
+        if (inMemoryToken) return inMemoryToken;
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const t = localStorage.getItem(TOKEN_STORAGE_KEY);
+            if (t) {
+                inMemoryToken = t;
+                return t;
+            }
+        }
+        return null;
+    },
 
-        return response.data.user;
-      } else {
-        // Handle cases where response is not as expected
-        throw new Error('Login response is not in the expected format.');
-      }
-    } catch (error) {
-      // apiClient will throw an error for non-2xx responses
-      const errorMessage = error.response?.data?.message || error.message || 'Login failed';
-      throw new Error(errorMessage);
+    clearToken: () => {
+        inMemoryToken = null;
+        if (typeof window !== 'undefined' && window.localStorage) {
+            localStorage.removeItem(TOKEN_STORAGE_KEY);
+        }
+    },
+
+    // User storage helpers
+    setCurrentUser: (user) => {
+        const normalized = normalizeUser(user);
+        inMemoryUser = normalized;
+        if (typeof window !== 'undefined' && window.localStorage) {
+            if (normalized) {
+                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(normalized));
+            } else {
+                localStorage.removeItem(USER_STORAGE_KEY);
+            }
+        }
+    },
+
+    // Lấy CSRF token từ backend (only used when API_USE_COOKIES = true)
+    getCsrfToken: async () => {
+        if (!API_USE_COOKIES) return null;
+        return (await apiClient.get('/api/auth/csrf')).data?.token;
+    },
+
+    login: async (email, password) => {
+        try {
+            // If using cookie-based auth, fetch CSRF token first
+            let csrfToken = null;
+            if (API_USE_COOKIES) {
+                csrfToken = await authService.getCsrfToken();
+            }
+
+            // Prepare login payload. Use JSON as your curl sample sends JSON and endpoint is /api/auth/login
+            const payload = { username: email, password };
+            const response = await apiClient.post('/api/auth/login', payload, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(csrfToken ? { 'X-CSRF-TOKEN': csrfToken } : {}),
+                },
+            });
+
+            // Read token from Authorization header or response body; normalize by removing any 'Bearer' prefix (with or without space)
+            const rawHeader = response.headers[AUTH_HEADER_NAME] || response.headers[AUTH_HEADER_NAME.toLowerCase()];
+            const rawBodyToken = response.data?.token;
+            const rawTokenSource = rawHeader || rawBodyToken || null;
+
+            if (rawTokenSource) {
+                // remove 'Bearer' (case-insensitive) and any following spaces
+                const normalized = rawTokenSource.replace(/^Bearer\s*/i, '').trim();
+                if (normalized) {
+                    authService.setToken(normalized, { persistent: true });
+                }
+            }
+
+            // Get current user
+            return await authService.getCurrentUser();
+
+        } catch (error) {
+            const errorMessage = error.response?.data?.message || error.message || 'Login failed';
+            throw new Error(errorMessage);
+        }
+    },
+
+    logout: async () => {
+        try {
+            if (API_USE_COOKIES) {
+                const csrfToken = await authService.getCsrfToken();
+                await apiClient.post('/logout', null, {
+                    headers: {
+                        ...(csrfToken ? { 'X-CSRF-TOKEN': csrfToken } : {}),
+                    }
+                });
+            } else {
+                // If using token-based auth, just call logout endpoint and clear token
+                await apiClient.post('/logout');
+            }
+        } catch {
+            // ignore
+        } finally {
+            authService.clearToken();
+            authService.setCurrentUser(null);
+        }
+    },
+
+    // Gọi /api/auth/me để lấy user đang login
+    getCurrentUser: async () => {
+        try {
+            const response = await apiClient.get('/api/auth/me');
+            if (response.data) {
+                const normalized = normalizeUser(response.data);
+                authService.setCurrentUser(normalized);
+                inMemoryUser = normalized;
+                return normalized;
+            }
+            return null;
+        } catch {
+            return null; // Chua login hoac session het
+        }
+    },
+
+    // Get user from cache (synchronous)
+    getCachedUser: () => {
+        if (inMemoryUser) return inMemoryUser;
+        if (typeof window !== 'undefined' && window.localStorage) {
+            const cached = localStorage.getItem(USER_STORAGE_KEY);
+            if (cached) {
+                try {
+                    inMemoryUser = normalizeUser(JSON.parse(cached));
+                    return inMemoryUser;
+                } catch {
+                    return null;
+                }
+            }
+        }
+        return null;
+    },
+
+    getUserRoles: (user) => {
+        const normalized = normalizeUser(user);
+        return normalized?.roles || [];
+    },
+
+    hasRole: (user, role) => {
+        if (!user || !role) return false;
+        const target = String(role).toUpperCase();
+        const roles = authService.getUserRoles(user);
+        return roles.includes(target);
     }
-  },
-
-  logout: () => {
-    // Clear user info and token from localStorage
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-
-    // Remove the authorization header from apiClient
-    delete apiClient.defaults.headers.common['Authorization'];
-  },
-
-  getCurrentUser: () => {
-    const userStr = localStorage.getItem('user');
-    return userStr ? JSON.parse(userStr) : null;
-  },
 };
 
 export default authService;

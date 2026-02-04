@@ -1,5 +1,6 @@
 package com.michael.a2nguyenvanan18d04.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Tag {
 	
 	
 	@OneToMany(mappedBy = "tag", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<NewsTag> newsTags = new ArrayList<>();
 	
 	public Tag(String tagName, String note, List<NewsTag> newsTags) {

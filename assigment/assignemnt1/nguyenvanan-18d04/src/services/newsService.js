@@ -1,6 +1,6 @@
 import apiClient from './apiClient';
 
-const API_ENDPOINT = '/news';
+const API_ENDPOINT = '/api/news';
 
 const newsService = {
   getAll: async () => {

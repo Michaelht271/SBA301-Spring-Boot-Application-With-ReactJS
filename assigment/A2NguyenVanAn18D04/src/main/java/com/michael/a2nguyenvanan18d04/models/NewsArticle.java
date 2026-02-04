@@ -1,5 +1,6 @@
 package com.michael.a2nguyenvanan18d04.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
@@ -11,6 +12,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +34,14 @@ public class NewsArticle {
 	
 	@Column(name = "CreateDate")
 	@CreatedBy
-	private LocalDate createDate;
+	private LocalDateTime createDate;
 	private String newsContent;
 	private String newsSource;
 	
 	private String newsStatus;
 	
 	@OneToMany(mappedBy = "newsArticle", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<NewsTag> newsTags = new ArrayList<>();
 	
 	@ManyToOne
@@ -58,17 +61,16 @@ public class NewsArticle {
 	
 	@Column(name = "ModifyDate")
 	@LastModifiedDate
-	private LocalDate modifyDate;
+	private LocalDateTime modifyDate;
 	
 	
 	
-	public NewsArticle(String newsSource, String newsTitle, String headLine, String newsContent, String newsStatus, Category category) {
+	public NewsArticle(String newsSource, String newsTitle, String headLine, String newsContent, String newsStatus) {
 		this.newsSource = newsSource;
 		this.newsTitle = newsTitle;
 		this.headLine = headLine;
 		this.newsContent = newsContent;
 		this.newsStatus = newsStatus;
-		this.category = category;
 	}
 	
 	

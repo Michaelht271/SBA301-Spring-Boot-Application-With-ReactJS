@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Form, FormControl, InputGroup, Spinner } from 'react-bootstrap';
+import { Button, Modal,  FormControl, InputGroup, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import NewsTable from '../../features/news/components/NewsTable.jsx';
 import NewsForm from '../../features/news/components/NewsForm.jsx';
@@ -41,8 +41,8 @@ const NewsManagementPage = () => {
 
   const handleSaveNews = async (news) => {
     try {
-      if (news.id) {
-        await newsService.update(news.id, news);
+      if (news.newArticleId) {
+        await newsService.update(news.newArticleId, news);
         toast.success("News article updated successfully!");
       } else {
         await newsService.create(news);
@@ -69,10 +69,13 @@ const NewsManagementPage = () => {
     }
   };
 
-  const filteredNews = newsList.filter(news =>
-    news.newsTitle.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    news.headline.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  // Safely compute filtered list: guard against null/undefined fields
+  const normalizedQuery = (searchTerm || '').trim().toLowerCase();
+  const filteredNews = (newsList || []).filter((news) => {
+    const title = (news?.newsTitle || '').toLowerCase();
+    const headline = (news?.headLine || '').toLowerCase();
+    return title.includes(normalizedQuery) || headline.includes(normalizedQuery);
+  });
 
   const renderContent = () => {
     if (loading) {

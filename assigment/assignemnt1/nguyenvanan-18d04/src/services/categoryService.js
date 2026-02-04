@@ -1,6 +1,6 @@
 import apiClient from './apiClient';
 
-const API_ENDPOINT = '/categories';
+const API_ENDPOINT = '/api/categories';
 
 const categoryService = {
   getAll: async () => {

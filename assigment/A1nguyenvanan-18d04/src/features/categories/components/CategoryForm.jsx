@@ -4,7 +4,7 @@ import { Form, Button } from 'react-bootstrap';
 const CategoryForm = ({ category, onSave, onCancel }) => {
   const [validated, setValidated] = useState(false); // New state for validation
   const [formData, setFormData] = useState({
-    id: null,
+      categoryId: null,
     categoryName: '',
     categoryDescription: '',
     parentCategoryID: '',
@@ -14,7 +14,7 @@ const CategoryForm = ({ category, onSave, onCancel }) => {
   useEffect(() => {
     if (category) {
       setFormData({
-        id: category.id,
+          categoryId: category.categoryId || category.categoryId,
         categoryName: category.categoryName || '',
         categoryDescription: category.categoryDescription || '',
         parentCategoryID: category.parentCategoryID || '',
@@ -22,7 +22,7 @@ const CategoryForm = ({ category, onSave, onCancel }) => {
       });
     } else {
       setFormData({
-        id: null,
+          categoryId: null,
         categoryName: '',
         categoryDescription: '',
         parentCategoryID: '',
@@ -50,6 +50,7 @@ const CategoryForm = ({ category, onSave, onCancel }) => {
         ...formData,
         parentCategoryID: formData.parentCategoryID === '' ? null : Number(formData.parentCategoryID),
       };
+      console.log('CategoryForm submitting:', dataToSend); // Debug log
       onSave(dataToSend);
     }
     setValidated(true);
