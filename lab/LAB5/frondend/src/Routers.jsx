@@ -1,7 +1,7 @@
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Orchids from "./components/orchid/index.jsx";
-import EditOrchid from "./components/orchid/EditOrchid.jsx";
-import Orchid from "./components/orchid/_id.jsx";
+import Orchids from "./pages/orchids/index.jsx";
+import EditOrchid from "./pages/orchids/EditOrchid.jsx";
+import Orchid from "./pages/orchids/_id.jsx";
 
 export default function Routers() {
 

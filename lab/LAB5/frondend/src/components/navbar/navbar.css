@@ -1,0 +1,44 @@
+/* Custom navbar styles */
+.navbar-orchid {
+  --bs-navbar-bg: rgba(0,0,0,0.65);
+  background-color: var(--bs-navbar-bg) !important;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.navbar-orchid .navbar-brand {
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  color: #ffd7f0 !important;
+}
+
+/* Link styles */
+.navbar-orchid .nav-link {
+  color: rgba(255,255,255,0.9) !important;
+}
+.navbar-orchid .nav-link:hover {
+  color: #ffd7f0 !important;
+}
+
+/* Responsive adjustments */
+@media (max-width: 576px) {
+  .navbar-orchid .navbar-brand {
+    font-size: 1.05rem;
+  }
+}
+
+/* Light theme overrides */
+@media (prefers-color-scheme: light) {
+  .navbar-orchid {
+    --bs-navbar-bg: rgba(255,255,255,0.85);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  .navbar-orchid .navbar-brand {
+    color: #5b2160 !important;
+  }
+  .navbar-orchid .nav-link {
+    color: rgba(0,0,0,0.8) !important;
+  }
+}
+
