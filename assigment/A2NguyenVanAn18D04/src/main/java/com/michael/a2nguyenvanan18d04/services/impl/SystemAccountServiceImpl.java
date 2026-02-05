@@ -93,4 +93,8 @@ public class SystemAccountServiceImpl implements SystemAccountService {
 			return false;
 		}
 	}
+	@Override
+	public Optional<SystemAccount> getSystemAccountByAccountEmail(String email) {
+		return systemAccountRepository.findByAccountEmail(email);
+	}
 }

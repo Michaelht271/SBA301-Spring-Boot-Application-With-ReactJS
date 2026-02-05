@@ -1,5 +1,8 @@
 package com.michael.a2nguyenvanan18d04.controller;
 
+import com.michael.a2nguyenvanan18d04.models.CustomerUserDetails;
+import com.michael.a2nguyenvanan18d04.models.SystemAccount;
+import com.michael.a2nguyenvanan18d04.services.interfaces.SystemAccountService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +17,13 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+	private final SystemAccountService systemAccountService;
 	
+	public AuthController(SystemAccountService systemAccountService) {
+		this.systemAccountService = systemAccountService;
+	}
+	
+
 	@GetMapping("/csrf")
 	public ResponseEntity<Map<String, String>> getCsrfToken(CsrfToken csrfToken) {
 		return ResponseEntity.ok(Map.of(
@@ -29,10 +38,15 @@ public class AuthController {
 			return ResponseEntity.status(401).body(Map.of("error", "Not authenticated"));
 		}
 		
+		
+		SystemAccount account = systemAccountService.getSystemAccountByAccountEmail(authentication.getName()).orElseThrow();
+		
 		Map<String, Object> userInfo = new HashMap<>();
-		userInfo.put("username", authentication.getName());
-	
+		userInfo.put("username", account.getAccountName());
+		userInfo.put("email", authentication.getName());
+	    userInfo.put("id", account.getAccountId() );
 		userInfo.put("authorities", authentication.getAuthorities());
+		
 		
 		return ResponseEntity.ok(userInfo);
 	}

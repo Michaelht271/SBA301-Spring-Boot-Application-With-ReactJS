@@ -12,4 +12,5 @@ public interface SystemAccountService {
 	SystemAccount createSystemAccount(SystemAccountDTO accountDTO);
 	SystemAccount updateSystemAccount(SystemAccountDTO accountDTO);
 	boolean deleteSystemAccountById(Long id);
+	Optional<SystemAccount> getSystemAccountByAccountEmail(String email);
 }
