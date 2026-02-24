@@ -1,0 +1,32 @@
+server:
+  port: 8080
+application:
+  jwt:
+    secretKey: SecureKeyMustBeLongEnoughForHS256AlgorithmOrLongerSoThisIsAnExampleSecureKeyMustBeLongEnoughForHS256AlgorithmOrLongerSoThisIsAnExample
+    tokenPrefix: Bearer
+    tokenExpirationAfterDays: 7
+
+spring:
+  application:
+    name: Lab6
+
+
+  datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=Lab6;encrypt=true;trustServerCertificate=true;
+    username: sa
+    password: MichaelAn271
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.SQLServerDialect
+        format_sql: true
+
+
+
