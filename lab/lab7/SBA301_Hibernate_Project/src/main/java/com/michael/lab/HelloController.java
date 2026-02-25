@@ -1,4 +1,4 @@
-package com.michael.lab7;
+package com.michael.lab;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

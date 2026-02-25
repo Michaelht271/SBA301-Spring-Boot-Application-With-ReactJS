@@ -1,4 +1,4 @@
-package com.michael.lab7;
+package com.michael.lab;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,6 +6,8 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import com.michael.lab.utils.DataInitializer;
 
 public class HelloApplication extends Application {
 	@Override
@@ -18,6 +20,8 @@ public class HelloApplication extends Application {
 	}
 	
 	public static void main(String[] args) {
+		// initialize DB data before launching UI
+		DataInitializer.initData();
 		launch();
 	}
 }

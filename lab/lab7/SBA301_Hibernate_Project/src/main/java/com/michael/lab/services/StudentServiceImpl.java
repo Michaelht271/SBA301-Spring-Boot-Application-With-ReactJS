@@ -1,12 +1,12 @@
-package com.michael.lab7.services;
+package com.michael.lab.services;
 
-import com.michael.lab7.pojos.Student;
+import com.michael.lab.pojos.Student;
 
 import java.util.List;
 
 public class StudentServiceImpl implements  StudentService{
 	private static StudentServiceImpl instance = new StudentServiceImpl();
-	private final com.michael.lab7.repository.StudentRepository studentRepository = com.michael.lab7.repository.StudentRepositoryImpl.getInstance();
+	private final com.michael.lab.repository.StudentRepository studentRepository = com.michael.lab.repository.StudentRepositoryImpl.getInstance();
 
 	public static StudentService getInstance() {
 		if (instance == null) {
@@ -42,6 +42,7 @@ public class StudentServiceImpl implements  StudentService{
 
 	@Override
 	public void update(Student student) {
+		
 		studentRepository.update(student);
 	}
 

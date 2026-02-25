@@ -1,6 +1,6 @@
-package com.michael.lab7.repository;
+package com.michael.lab.repository;
 
-import com.michael.lab7.pojos.Student;
+import com.michael.lab.pojos.Student;
 
 import java.util.List;
 

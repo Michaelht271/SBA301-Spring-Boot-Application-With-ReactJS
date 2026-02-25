@@ -48,12 +48,14 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>hsf301.com.main</groupId>-->
-<!--            <artifactId>SBA301_Hibernate_Project</artifactId>-->
-<!--            <version>1.0-SNAPSHOT</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.michael.lab</groupId>
+            <artifactId>com.michael.lab</artifactId>
+            <version>1.0</version>
+
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -76,7 +78,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>sba301.fe.javafxdemo/sba301.fe.javafxdemo.HelloApplication</mainClass>
+                            <mainClass>sba301.fe.javafxdemo/sba301.fe.javafxdemo.MainApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>

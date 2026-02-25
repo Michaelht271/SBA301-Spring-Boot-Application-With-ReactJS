@@ -1,7 +1,7 @@
-package com.michael.lab7.utils;
+package com.michael.lab.utils;
 
-import com.michael.lab7.pojos.Book;
-import com.michael.lab7.pojos.Student;
+import com.michael.lab.pojos.Book;
+import com.michael.lab.pojos.Student;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 

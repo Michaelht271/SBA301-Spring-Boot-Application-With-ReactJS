@@ -1,6 +1,6 @@
-package com.michael.lab7.services;
+package com.michael.lab.services;
 
-import com.michael.lab7.pojos.Student;
+import com.michael.lab.pojos.Student;
 
 import java.util.List;
 

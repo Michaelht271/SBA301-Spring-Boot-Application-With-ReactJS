@@ -1,8 +1,8 @@
 package sba301.fe.javafxdemo;
 
-import com.michael.lab7.pojos.Student;
-import com.michael.lab7.services.StudentService;
-import com.michael.lab7.services.StudentServiceImpl;
+import com.michael.lab.pojos.Student;
+import com.michael.lab.services.StudentService;
+import com.michael.lab.services.StudentServiceImpl;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -22,8 +22,7 @@ public class StudentController implements Initializable {
     public TableColumn<Student, Integer> studentId;
     @FXML
     public TableColumn<Student, String> email;
-    @FXML
-    public TableColumn<Student, String> password;
+   
     @FXML
     public TableColumn<Student, String> firstName;
     @FXML
@@ -42,7 +41,7 @@ public class StudentController implements Initializable {
     @FXML
     private TextField txtTotalMark;
 
-    private int idStudent;
+    private long idStudent;
     private StudentService iStudentService = StudentServiceImpl.getInstance();
     private ObservableList<Student> studentsModels;
 
@@ -58,7 +57,7 @@ public class StudentController implements Initializable {
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         email.setCellValueFactory(new PropertyValueFactory<>("email"));
-        password.setCellValueFactory(new PropertyValueFactory<>("password"));
+      //  password.setCellValueFactory(new PropertyValueFactory<>("password"));
         totalMark.setCellValueFactory(new PropertyValueFactory<>("marks"));
 
         tbData.setItems(studentsModels);
@@ -93,7 +92,8 @@ public class StudentController implements Initializable {
     }
 
     private void showStudent(Student student) {
-//        this.setIdStudent(student.getId());
+		long id = (long ) student.getId();
+		this.setIdStudent(id);
         this.txtFirstName.setText(student.getFirstName());
         this.txtEmail.setText(student.getEmail());
         this.txtPassword.setText(student.getPassword());
@@ -111,31 +111,33 @@ public class StudentController implements Initializable {
         studentsModels = FXCollections.observableArrayList(iStudentService.getAllStudents());
         tbData.setItems(studentsModels);
     }
-//
-//    @FXML
-//    public void addStudent() {
-//        Student student = new Student(this.txtEmail.getText(), this.txtPassword.getText(),
-//                this.txtFirstName.getText(), this.txtLastName.getText());
-//        student.setMarks(Integer.parseInt(txtTotalMark.getText()));
-//        iStudentService.save(student);
-//        refreshDataTable();
-//    }
-//
-//    @FXML
-//    public void deleteStudent() {
-//        iStudentService.delete(this.getIdStudent());
-//        refreshDataTable();
-//    }
-//
-//    @FXML
-//    public void updateStudent() {
-//        Student student = new Student(this.idStudent, this.txtEmail.getText(), this.txtPassword.getText(),
-//                this.txtFirstName.getText(), this.txtLastName.getText());
-//        student.setMarks(Integer.parseInt(txtTotalMark.getText()));
-//        iStudentService.update(student);
-//        refreshDataTable();
-//    }
 
-    public int getIdStudent() { return idStudent; }
-    public void setIdStudent(int idStudent) { this.idStudent = idStudent; }
+    @FXML
+    public void addStudent() {
+        Student student =  Student.builder().firstName(txtFirstName.getText()).lastName(txtLastName.getText()).email(txtEmail.getText()).password(txtPassword.getText()).build();
+
+	    
+	    
+        student.setMarks(Integer.parseInt(txtTotalMark.getText()));
+        iStudentService.save(student);
+        refreshDataTable();
+    }
+
+    @FXML
+    public void deleteStudent() {
+		Long id = (long) this.getIdStudent();
+        iStudentService.delete(id);
+        refreshDataTable();
+    }
+
+    @FXML
+    public void updateStudent() {
+        Student student = Student.builder().id(this.getIdStudent()).firstName(txtFirstName.getText()).lastName(txtLastName.getText()).email(txtEmail.getText()).password(txtPassword.getText()).build();
+        student.setMarks(Integer.parseInt(txtTotalMark.getText()));
+        iStudentService.update(student);
+        refreshDataTable();
+    }
+
+    public long getIdStudent() { return idStudent; }
+    public void setIdStudent(long idStudent) { this.idStudent = idStudent; }
 }

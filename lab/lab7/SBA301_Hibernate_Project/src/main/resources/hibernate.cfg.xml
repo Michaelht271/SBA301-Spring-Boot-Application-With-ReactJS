@@ -30,7 +30,7 @@
         <property name="hibernate.connection.username">sa</property>
 
         <!-- Password -->
-        <property name="hibernate.connection.password">Michaelht271</property>
+        <property name="hibernate.connection.password">MichaelAn271</property>
 
 
         <!-- ================= HIBERNATE SETTINGS ================= -->
@@ -43,13 +43,13 @@
 
         <!-- Auto create / update table -->
         <!-- Options: none | validate | update | create | create-drop -->
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
 
 
         <!-- ================= ENTITY MAPPING ================= -->
 
-        <mapping class="com.michael.lab7.pojos.Book"/>
-        <mapping class="com.michael.lab7.pojos.Student"/>
+        <mapping class="com.michael.lab.pojos.Book"/>
+        <mapping class="com.michael.lab.pojos.Student"/>
 
     </session-factory>
 </hibernate-configuration>

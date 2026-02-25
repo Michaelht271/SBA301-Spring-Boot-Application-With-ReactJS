@@ -1,9 +1,10 @@
-package com.michael.lab7.dao;
+package com.michael.lab.dao;
 
-import com.michael.lab7.pojos.Student;
-import com.michael.lab7.utils.HibernateUtil;
+import com.michael.lab.pojos.Student;
+import com.michael.lab.utils.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,17 +74,33 @@ public class StudentDAO {
 		}
 	}
 	
-	public Student getStudentByEmail() {
+	public Student getStudentByEmail(String email) {
+		
 		Transaction transaction = null;
 		Student student = null;
-		try(Session session = HibernateUtil.getSessionFactory().openSession()){
-			transaction = session.beginTransaction();
-			student = session.createQuery("FROM Student WHERE email = :email", Student.class).getSingleResult();
-			transaction.commit();
 		
+		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+			
+			transaction = session.beginTransaction();
+			
+			Query<Student> query = session.createQuery(
+					"FROM Student WHERE email = :email",
+					Student.class
+			);
+			
+			query.setParameter("email", email);
+			
+			student = query.getSingleResultOrNull();
+			
+			transaction.commit();
+			
 		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
 		}
+		
 		return student;
 	}
 	
@@ -91,7 +108,7 @@ public class StudentDAO {
 		Transaction transaction = null;
 		try(Session session = HibernateUtil.getSessionFactory().openSession()){
 			transaction = session.beginTransaction();
-			session.persist(student);
+			session.merge(student);
 			transaction.commit();
 			System.out.println("Student updated successfully");
 		} catch (Exception e) {

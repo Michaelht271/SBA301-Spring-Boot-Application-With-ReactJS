@@ -1,4 +1,4 @@
-package com.michael.lab7.pojos;
+package com.michael.lab.pojos;
 
 
 import jakarta.persistence.*;

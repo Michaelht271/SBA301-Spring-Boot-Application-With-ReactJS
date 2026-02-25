@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.michael.lab7.pojos.Student;
-import com.michael.lab7.services.StudentService;
-import com.michael.lab7.services.StudentServiceImpl;
+import com.michael.lab.pojos.Student;
+import com.michael.lab.services.StudentService;
+import com.michael.lab.services.StudentServiceImpl;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,30 +27,57 @@ public class LoginController implements Initializable {
     private StudentService iStudentService = StudentServiceImpl.getInstance() ;
 
     public LoginController() {
-        iStudentService = (StudentServiceImpl) StudentServiceImpl.getInstance();
+        iStudentService =  StudentServiceImpl.getInstance();
     }
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
     }
-
-    @FXML
-    public void login() throws IOException {
-        Student account = iStudentService.getStudentByEmail(txtEmail.getText());
-
-        // Logic kiểm tra tài khoản và mật khẩu
-        if (account != null && account.getPassword().equals(txtPassword.getText())) {
-
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/student-view.fxml"));
-            Parent root = fxmlLoader.load();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.show();
-
-            // Bạn có thể thêm code để đóng cửa sổ đăng nhập hiện tại tại đây
-        }
-    }
+	
+	@FXML
+	public void login() throws IOException {
+		
+		String email = txtEmail.getText();
+		String password = txtPassword.getText();
+		
+		Student account = iStudentService.getStudentByEmail(email);
+		
+		if (account == null) {
+			
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Login Failed");
+			alert.setHeaderText(null);
+			alert.setContentText("Email does not exist!");
+			alert.showAndWait();
+			
+			return;
+		}
+		
+		if (!account.getPassword().equals(password)) {
+			
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Login Failed");
+			alert.setHeaderText(null);
+			alert.setContentText("Wrong password!");
+			alert.showAndWait();
+			
+			return;
+		}
+		
+		// login success
+		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/student-view.fxml"));
+		Parent root = fxmlLoader.load();
+		
+		Stage stage = new Stage();
+		stage.setScene(new Scene(root));
+		stage.setTitle("Student Dashboard");
+		stage.show();
+		
+		// đóng cửa sổ login
+		Stage currentStage = (Stage) txtEmail.getScene().getWindow();
+		currentStage.close();
+	}
 
     @FXML
     public void logout() throws IOException {

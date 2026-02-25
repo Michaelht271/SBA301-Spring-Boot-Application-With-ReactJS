@@ -4,10 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.michael</groupId>
-    <artifactId>SBA301_Hibernate_Project</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <name>Lab7</name>
+    <groupId>com.michael.lab</groupId>
+    <artifactId>com.michael.lab</artifactId>
+    <version>1.0</version>
+    <name>com.michael.lab</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -83,6 +83,14 @@
                         <arg>--add-modules</arg>
                         <arg>java.naming</arg>
                     </compilerArgs>
+                    <!-- Ensure Lombok runs as an annotation processor on the classpath (non-modular) -->
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>1.18.32</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
             <plugin>
@@ -93,7 +101,7 @@
                     <execution>
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>com.michael.lab7/com.michael.lab7.HelloApplication</mainClass>
+                            <mainClass>com.michael.lab7/com.michael.lab.HelloApplication</mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
                             <jlinkImageName>app</jlinkImageName>
