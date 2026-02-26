@@ -27,8 +27,8 @@ const SettingsPage = () => {
       if (user) {
         setCurrentUser(user);
         setFormData({
-          accountName: user.accountName || '',
-          accountEmail: user.accountEmail || '',
+          accountName: user.username || '',
+          accountEmail: user.email || '',
           oldPassword: '',
           newPassword: '',
           confirmPassword: '',

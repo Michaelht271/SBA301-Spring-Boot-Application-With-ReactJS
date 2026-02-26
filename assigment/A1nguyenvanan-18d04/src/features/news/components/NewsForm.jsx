@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Form, Button, Row, Col, Badge } from 'react-bootstrap';
-import categoryService from '../../../services/categoryService'; // Import category service
+import categoryService from '../../../services/categoryService';
+import authService from "../../../services/authService.js"; // Import category service
 
 const NewsForm = ({ news, onSave, onCancel }) => {
     const [validated, setValidated] = useState(false);
@@ -90,13 +91,19 @@ const NewsForm = ({ news, onSave, onCancel }) => {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.stopPropagation();
         } else {
-            const currentUserID = 1;
+            // Try to get a cached user synchronously first. If not available, call the async API.
+            let currentUser = authService.getCachedUser();
+            if (!currentUser) {
+                // getCurrentUser is async; await it to ensure we have the id
+                currentUser = await authService.getCurrentUser();
+            }
+            const currentUserID = currentUser?.id || 3;
             const now = new Date().toISOString();
             const dataToSend = {
                 ...formData,
