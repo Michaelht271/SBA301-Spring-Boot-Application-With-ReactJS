@@ -1,0 +1,13 @@
+/* Custom styles for FUMiniHotel */
+
+.site-layout-content {
+  min-height: 80vh;
+}
+
+.ant-layout-header .logo {
+  float: left;
+}
+
+.ant-layout-footer {
+  background: #f0f2f5;
+}

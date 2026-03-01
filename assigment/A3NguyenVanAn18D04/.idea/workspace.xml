@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2388e1c1-442d-4c56-b0e9-9fbecb22a475" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/A3NguyenVanAn18D04Application.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/configs/CorsConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/configs/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/configs/WebConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/controllers/AuthController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/dtos/LoginRequest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/entites/BookingDetail.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/entites/BookingReservation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/entites/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/entites/RoomInformation.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/entites/RoomType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/enums/BookingStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/enums/CustomerStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/enums/Role.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/enums/RoomStatus.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/jwts/JwtProperties.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/jwts/JwtTokenProvider.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/jwts/JwtTokenValidationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/repository/BookingDetailRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/repository/BookingReservationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/repository/CustomerRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/repository/RoomInformationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/repository/RoomTypeRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/impl/BookingDetailImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/impl/CustomerServiceImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/interfaces/BookingDetailService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/interfaces/BookingReservationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/interfaces/CustomerService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/interfaces/RoomInformationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/michael/a3nguyenvanan18d04/services/interfaces/RoomTypeService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/michael/a3nguyenvanan18d04/A3NguyenVanAn18D04ApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CopilotPersistence">
+    <persistenceIdMap>
+      <entry key="_/home/michael/code/SBA301-Spring-Boot-Application-With-ReactJS/assigment/A3NguyenVanAn18D04" value="3ACM4hzCdViaGS0Mq2cNBBnbAHi" />
+    </persistenceIdMap>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3ACM4hzCdViaGS0Mq2cNBBnbAHi" />
+  <component name="ProjectViewState">
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Spring Boot.A3NguyenVanAn18D04Application.executor": "Run",
+    "com.google.cloudcode.ide_session_index": "20260227_0003",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/michael/code/SBA301-Spring-Boot-Application-With-ReactJS/assigment/assignment3/A3NguyenVanAn18D04",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "application.passwordSafe"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="A3NguyenVanAn18D04Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="A3NguyenVanAn18D04" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.michael.a3nguyenvanan18d04.A3NguyenVanAn18D04Application" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.28238.7" />
+        <option value="bundled-js-predefined-d6986cc7102b-a71380e98a7c-JavaScript-IU-252.28238.7" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2388e1c1-442d-4c56-b0e9-9fbecb22a475" name="Changes" comment="" />
+      <created>1772091910327</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1772091910327</updated>
+      <workItem from="1772091911485" duration="9198000" />
+      <workItem from="1772181155180" duration="3312000" />
+      <workItem from="1772185399113" duration="2649000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>
