@@ -15,11 +15,9 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService, UserDetailsService {
 	
 	private final CustomerRepository customerRepository;
-	
 	public CustomerServiceImpl(CustomerRepository customerRepository) {
 		this.customerRepository = customerRepository;
 	}
-	
 	@Override
 	public @Nonnull UserDetails loadUserByUsername(@Nonnull String username) throws UsernameNotFoundException {
 		Customer customer = customerRepository.findByEmailAddress(username);
@@ -42,7 +40,6 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 	}
 	@Override
 	public Customer updateCustomer(Long id, Customer customer) {
-		
 		if (customer == null) {
 			return null;
 		}
@@ -53,7 +50,6 @@ public class CustomerServiceImpl implements CustomerService, UserDetailsService 
 		existingCustomer.setCustomerBirthday(customer.getCustomerBirthday());
 		existingCustomer.setCustomerStatus(customer.getCustomerStatus());
 		existingCustomer.setPassword(customer.getPassword());
-
 		return customerRepository.save(existingCustomer);
 	}
 	@Override

@@ -1,5 +1,4 @@
 package com.michael.a3nguyenvanan18d04.entites;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.michael.a3nguyenvanan18d04.enums.RoomStatus;
 import jakarta.persistence.*;
@@ -10,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
-
 @Entity
 @Table(name = "RoomInformation")
 @Data
@@ -21,9 +19,7 @@ public class RoomInformation {
 	@Id
 	@GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
 	private Long roomID;
-
 	private String roomNumber;
-
 	private String roomDetailDescription;
 
 	private int roomMaxCapacity;
@@ -40,7 +36,6 @@ public class RoomInformation {
 	@OneToMany(mappedBy = "roomInformation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("roomInformation")
 	private List<BookingDetail> bookingDetails = new ArrayList<>();
-
 	
 	public void addBookingDetail(BookingDetail bookingDetail) {
 		this.bookingDetails.add(bookingDetail);

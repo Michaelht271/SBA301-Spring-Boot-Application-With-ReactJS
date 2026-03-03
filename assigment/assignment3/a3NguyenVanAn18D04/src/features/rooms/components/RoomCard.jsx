@@ -1,12 +1,12 @@
 import React from 'react';
 import { Card, Tag, Typography, Button, Space } from 'antd';
 import { HomeOutlined, DollarOutlined } from '@ant-design/icons';
-import { ROOM_STATUS } from '../../../core/constants';
 
 const { Text, Paragraph } = Typography;
 
 const RoomCard = ({ room, onBook }) => {
-  const roomID = room.roomID || room.roomId;
+  if (!room) return null;
+
   const roomNumber = room.roomNumber;
   const roomPricePerDay = room.roomPricePerDay || room.roomPrice;
   const roomDetailDescription = room.roomDetailDescription || room.roomDescription;

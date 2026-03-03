@@ -14,7 +14,6 @@ import {
 } from '@ant-design/icons';
 import {useAuth} from "../../../core/auth/useAuth.js";
 
-
 const { Header: AntHeader } = Layout;
 const { Text } = Typography;
 

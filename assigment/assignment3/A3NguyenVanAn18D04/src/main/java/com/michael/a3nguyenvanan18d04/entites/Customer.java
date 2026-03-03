@@ -23,6 +23,7 @@ public class Customer {
 	
 	private String customerFullName;
 	
+	
 	private String telephone;
 	
 	private String emailAddress;

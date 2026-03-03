@@ -58,7 +58,6 @@ const RoomsPage = () => {
   const filteredRooms = statusFilter === 'All' 
     ? rooms 
     : rooms.filter(room => room.roomStatus === statusFilter);
-
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>

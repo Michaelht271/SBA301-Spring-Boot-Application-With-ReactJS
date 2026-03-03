@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class BookingReservationController {
 	private final BookingReservationService bookingReservationService;
 	
-	
 	public BookingReservationController (BookingReservationService bookingReservationService){
 		this.bookingReservationService = bookingReservationService;
 	}
@@ -27,7 +26,6 @@ public class BookingReservationController {
 				bookingReservationService.getBookingReservations(authentication)
 		);
 	}
-	
 	@PostMapping
 	public ResponseEntity<Object> createBooking(@RequestBody BookingRequestDTO bookingRequestDTO ) {
 		return ResponseEntity.ok(

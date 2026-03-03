@@ -1,5 +1,4 @@
 package com.michael.a3nguyenvanan18d04.entites;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.michael.a3nguyenvanan18d04.enums.BookingStatus;
 import jakarta.persistence.*;
@@ -11,7 +10,6 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
 @Entity
 @Table(name = "BookingReservation")
 @Data
@@ -34,7 +32,6 @@ public class BookingReservation {
 	@JsonIgnoreProperties("bookingReservation")
 	private Customer customer;
 	
-	
 	@OneToMany(mappedBy = "bookingReservation", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnoreProperties("bookingReservation")
 	private List<BookingDetail> bookingDetails = new ArrayList<>();
@@ -46,13 +43,10 @@ public class BookingReservation {
 		bookingDetails.add(detail);
 		detail.setBookingReservation(this); // set back-reference
 	}
-	
 	public void removeBookingDetails(BookingDetail detail) {
 		if (bookingDetails != null) {
 			bookingDetails.remove(detail);
 			detail.setBookingReservation(null);
 		}
 	}
-	
-	
 }

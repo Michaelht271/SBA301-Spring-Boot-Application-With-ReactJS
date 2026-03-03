@@ -1,7 +1,5 @@
 import React, {createContext, useState, useEffect, useContext} from 'react';
 import {decodeToken, isTokenExpired} from "./jwtUtils.js";
-
-
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {

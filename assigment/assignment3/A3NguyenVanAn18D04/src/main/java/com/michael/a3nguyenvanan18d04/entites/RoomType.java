@@ -6,7 +6,6 @@ import lombok.*;
 
 import java.util.List;
 import java.util.ArrayList;
-
 @Entity
 @Table
 @Data
@@ -17,7 +16,6 @@ public class RoomType {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private Long roomTypeID;
-	
 	private String roomTypeName;
 	
 	private String roomTypeDescription;
@@ -36,7 +34,6 @@ public class RoomType {
 			roomInformation.setRoomType(this);
 		}
 	}
-	
 	public void removeRoomInformation(RoomInformation roomInformation) {
 		if (roomInformation == null || this.roomInformation == null) return;
 		if (this.roomInformation.remove(roomInformation)) {

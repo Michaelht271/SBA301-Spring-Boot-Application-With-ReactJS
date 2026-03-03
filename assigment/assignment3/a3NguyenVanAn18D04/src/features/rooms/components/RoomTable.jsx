@@ -13,7 +13,7 @@ const RoomTable = ({ rooms, loading, onEdit, onDelete }) => {
 
   const columns = [
     { title: 'ID', dataIndex: 'roomId', key: 'roomId', width: 80, render: (id) => <Text strong>#{id}</Text> },
-    { title: 'Room Name', dataIndex: 'roomName', key: 'roomName', sorter: (a, b) => (a.roomName || '').localeCompare(b.roomName || '') },
+    //{ title: 'Room Name', dataIndex: 'roomName', key: 'roomName', sorter: (a, b) => (a.roomName || '').localeCompare(b.roomName || '') },
     { title: 'Room Number', dataIndex: 'roomNumber', key: 'roomNumber' },
     { title: 'Type', dataIndex: ['roomType', 'roomTypeName'], key: 'roomType' },
     { 
