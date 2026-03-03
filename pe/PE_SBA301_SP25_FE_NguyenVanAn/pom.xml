@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.michael</groupId>
-    <artifactId>A3NguyenVanAn18D04</artifactId>
+    <artifactId>PE_SBA301_SP25_BE_NguyenVanAn</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>A3NguyenVanAn18D04</name>
-    <description>A3NguyenVanAn18D04</description>
+    <name>PE_SBA301_SP25_FE_NguyenVanAn</name>
+    <description>PE_SBA301_SP25_FE_NguyenVanAn</description>
     <url/>
     <licenses>
         <license/>
@@ -30,6 +30,10 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-starter-web</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -84,11 +88,10 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
-            <version>0.12.5</version>
+            <version>0.12.6</version>
         </dependency>
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
