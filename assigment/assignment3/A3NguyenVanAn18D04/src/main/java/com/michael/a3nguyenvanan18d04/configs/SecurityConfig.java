@@ -19,7 +19,7 @@ import javax.crypto.SecretKey;
 @Configuration
 @EnableWebSecurity
 @Slf4j
-public class SecurityConfig {
+public class    SecurityConfig {
 	private final JwtProperties jwtProperties;
 	
 	public SecurityConfig(JwtProperties jwtProperties) {

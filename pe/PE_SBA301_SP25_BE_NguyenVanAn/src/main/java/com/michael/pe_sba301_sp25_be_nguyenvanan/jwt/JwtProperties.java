@@ -1,7 +1,7 @@
-package com.michael.a3nguyenvanan18d04.jwts;
+package com.michael.pe_sba301_sp25_be_nguyenvanan.jwt;
 
-import lombok.*;
-
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
@@ -9,10 +9,10 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "application.jwt")
 @RequiredArgsConstructor
 @Data
-public class    JwtProperties {
+public class JwtProperties {
 	private String secretKey;
-	private Integer tokenExpirationAfterDays;
+	private long expiration;
+	private String header;
 	private String tokenPrefix;
-	private String headerString;
-
+	
 }
