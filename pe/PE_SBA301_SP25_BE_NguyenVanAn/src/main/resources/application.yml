@@ -6,7 +6,7 @@ application:
     header: Authorization
     secretKey: SecureKeyMustBeLongEnoughForHS256AlgorithmOrLongerSoThisIsAnExampleSecureKeyMustBeLongEnoughForHS256AlgorithmOrLongerSoThisIsAnExample
     tokenPrefix: Bearer
-    expiration: 7
+    expiration: 86400000
 
 spring:
   application:

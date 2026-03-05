@@ -4,10 +4,12 @@ import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Date;
+import java.util.List;
 
 @Component
 @Slf4j
@@ -19,10 +21,13 @@ public class JwtTokenProvider {
 	
 	
 	private String generateToken(Authentication authentication) {
+		List<String> authorities = authentication.getAuthorities().stream()
+		                                         .map(GrantedAuthority::getAuthority)  // ← dùng getAuthority() thay vì toString()
+		                                         .toList();
 		try {
 			return  Jwts.builder()
 			                   .subject(authentication.getName())
-			                   .claim("authorities", authentication.getAuthorities().stream().map(Object::toString).toList())
+			                   .claim("authorities", authorities)
 			                   .issuedAt(new Date())
 			                   .expiration(new Date(new Date().getTime() + jwtProperties.getExpiration()))
 			                   .signWith(secretKey)

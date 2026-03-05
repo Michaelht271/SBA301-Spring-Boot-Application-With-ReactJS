@@ -34,16 +34,18 @@ public class JwtApplicationFilter extends OncePerRequestFilter {
 		try {
 			log.debug("Request URL: {}", request.getRequestURL());
 			String authorizationHeader = request.getHeader(jwtProperties.getHeader());
+			
 			if (authorizationHeader == null || !authorizationHeader.startsWith(jwtProperties.getTokenPrefix()+ " ")) {
 				filterChain.doFilter(request, response);
 				return;
 				
 			}
-			String token = authorizationHeader.replace(jwtProperties.getTokenPrefix(), "");
+			String token = authorizationHeader.replace(jwtProperties.getTokenPrefix(), "").trim();
+			log.debug("JWT Token: {}", token);
 			Claims claims = Jwts.parser()
 			                    .verifyWith(secretKey)
 			                    .build()
-			                    .parseEncryptedClaims(token)
+			                    .parseSignedClaims(token)
 			                    .getPayload();
 			String username = claims.getSubject();
 			Object authoritiesObj = claims.get("authorities");
