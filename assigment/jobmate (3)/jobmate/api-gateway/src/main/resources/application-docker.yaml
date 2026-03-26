@@ -1,0 +1,112 @@
+server:
+  port: 8888
+
+app:
+  api-prefix: /api/v1
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      httpclient:
+        connect-timeout: 10000
+        response-timeout: 30s
+        pool:
+          type: ELASTIC
+          max-connections: 500
+          max-idle-time: 30s
+          eviction-interval: 30s
+        compression: true
+      server:
+        webflux:
+          routes:
+            # ============================================
+            # WebSocket Route - Socket.IO (QUAN TRỌNG: Phải đặt TRƯỚC các HTTP routes)
+            # ============================================
+            - id: websocket_chat_service
+              uri: ws://chat-service:8099
+              predicates:
+                - Path=/socket.io/**
+              # Không dùng StripPrefix cho WebSocket - Socket.IO cần giữ nguyên path
+            
+            # ============================================
+            # HTTP Routes
+            # ============================================
+            - id: identity_service
+              uri: http://jobmate-connect:8080
+              predicates:
+                - Path=${app.api-prefix}/jobmate/**
+              filters:
+                - StripPrefix=2
+                - name: Retry
+                  args:
+                    retries: 3
+                    statuses: INTERNAL_SERVER_ERROR,BAD_GATEWAY,SERVICE_UNAVAILABLE,GATEWAY_TIMEOUT,TOO_MANY_REQUESTS
+                    methods: GET,POST,PUT,PATCH
+                    backoff:
+                      firstBackoff: 50ms
+                      maxBackoff: 2000ms
+                      factor: 2
+                      basedOnPreviousValue: false
+                    exceptions: java.net.ConnectException,java.net.SocketTimeoutException,java.io.IOException
+
+            - id: notification_service
+              uri: http://notification-service:8081
+              predicates:
+                - Path=${app.api-prefix}/notification/**
+              filters:
+                - StripPrefix=2
+                - name: Retry
+                  args:
+                    retries: 3
+                    statuses: INTERNAL_SERVER_ERROR,BAD_GATEWAY,SERVICE_UNAVAILABLE,GATEWAY_TIMEOUT,TOO_MANY_REQUESTS
+                    methods: GET,POST,PUT,PATCH
+                    backoff:
+                      firstBackoff: 50ms
+                      maxBackoff: 2000ms
+                      factor: 2
+                      basedOnPreviousValue: false
+                    exceptions: java.net.ConnectException,java.net.SocketTimeoutException,java.io.IOException
+
+            - id: chat_service
+              uri: http://chat-service:8082
+              predicates:
+                - Path=${app.api-prefix}/chat/**
+              filters:
+                - StripPrefix=2
+                - name: Retry
+                  args:
+                    retries: 3
+                    statuses: INTERNAL_SERVER_ERROR,BAD_GATEWAY,SERVICE_UNAVAILABLE,GATEWAY_TIMEOUT,TOO_MANY_REQUESTS
+                    methods: GET,POST,PUT,PATCH
+                    backoff:
+                      firstBackoff: 50ms
+                      maxBackoff: 2000ms
+                      factor: 2
+                      basedOnPreviousValue: false
+                    exceptions: java.net.ConnectException,java.net.SocketTimeoutException,java.io.IOException
+
+# SpringDoc OpenAPI configuration
+springdoc:
+  swagger-ui:
+    urls:
+      - name: JobMate Connect
+        url: ${app.api-prefix}/jobmate/jobmate/v3/api-docs
+      - name: Chat Service
+        url: ${app.api-prefix}/chat/chat/v3/api-docs
+      - name: Notification Service
+        url: ${app.api-prefix}/notification/notification/v3/api-docs
+
+# Actuator configuration for health check
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: when-authorized
+      probes:
+        enabled: true
+
